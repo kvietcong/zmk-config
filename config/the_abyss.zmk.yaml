@@ -1,0 +1,11 @@
+file_format: "1"
+id: the_abyss
+name: The Abyss
+type: shield
+url: https://github.com/kvietcong/the-abyss/
+requires: [pro_micro]
+features:
+  - keys
+siblings:
+  - the_abyss_left
+  - the_abyss_right
