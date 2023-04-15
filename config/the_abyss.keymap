@@ -7,24 +7,18 @@
 };
 
 #define BAS 0
+#define GA1 1
+#define GA2 2
+#define GA3 3
+#define MOU 4
+#define NUM 5
+#define FUN 6
+#define SYM 7
+#define NAV 8
 
 / {
     combos {
         compatible = "zmk,combos";
-
-        combo_bt_clear {
-            timeout-ms = <100>;
-            key-positions = <21 22 23>;
-            bindings = <&bt BT_CLR>;
-        };
-
-    // shortcut
-    #define COMBO(NAME, BINDINGS, KEYPOS, TIMEOUT) \
-          combo_##NAME { \
-            timeout-ms = <TIMEOUT>; \
-            bindings = <BINDINGS>; \
-            key-positions = <KEYPOS>; \
-          };
 
         /*                KEY POSITIONS
 
@@ -35,6 +29,16 @@
           ╰───────╮ 30  31  32 │ │ 33  34  35 ╭───────╯
                   ╰────────────╯ ╰────────────╯        */
 
+        // Shortcut
+        #define COMBO(NAME, BINDINGS, KEYPOS, TIMEOUT) \
+            combo_##NAME { \
+                timeout-ms = <TIMEOUT>; \
+                bindings = <BINDINGS>; \
+                key-positions = <KEYPOS>; \
+            };
+
+        COMBO(bt_clear, &bt BT_CLR, 21 22 23, 100)
+
         COMBO(caps_word, &caps_word, 31 34, 60)
 
         COMBO(reset_left, &bootloader, 20 21 22 23, 100)
@@ -44,13 +48,84 @@
 	keymap {
 		compatible = "zmk,keymap";
 
-        // Base Layer
 		base_layer {
 			bindings = <
-				&kp Q     &kp W     &kp E     &kp R     /* */ &kp T     &kp Y     &kp U     &kp I     &kp O     &kp P
-				&kp A     &kp S     &kp D     &kp F     /* */ &kp G     &kp H     &kp J     &kp K     &kp L     &kp SEMI
-				&kp Z     &kp X     &kp C     &kp V     /* */ &kp B     &kp N     &kp M     &kp COMMA &kp DOT   &kp SLASH
-				          &kp TAB   &kp LSHFT &kp SPACE /* */ &kp BSPC  &kp ENTER &kp APOS
+				&kp Q     &kp W     &kp E         &kp R     &kp T    /* */ &kp Y          &kp U     &kp I     &kp O     &kp P
+				&kp A     &kp S     &kp D         &kp F     &kp G    /* */ &kp H          &kp J     &kp K     &kp L     &kp SEMI
+				&kp Z     &kp X     &kp C         &kp V     &kp B    /* */ &kp N          &kp M     &kp COMMA &kp DOT   &kp SLASH
+				          &kp TAB   &mt LSHFT ESC &kp SPACE &kp BSPC /* */ &mt RSHFT BSPC &kp APOS
+			>;
+		};
+
+		game1_layer {
+			bindings = <
+				&kp Q     &kp W     &kp E   &kp R       &kp T     /* */ &kp Y    &kp U          &kp I     &kp O     &kp P
+				&kp A     &kp S     &kp D   &kp F       &kp G     /* */ &kp H    &kp J          &kp K     &kp L     &kp SEMI
+				&kp Z     &kp X     &kp C   &kp V       &kp B     /* */ &kp N    &kp M          &kp COMMA &kp DOT   &kp SLASH
+				                    &kp TAB &lt GA2 ESC &kp SPACE /* */ &kp BSPC &mt RSHFT BSPC &kp APOS
+			>;
+		};
+
+		game2_layer {
+			bindings = <
+				&kp LCTL &kp N1 &trans  &kp N1 &kp TAB   /* */ &trans &trans &trans &trans &trans
+				&kp LSFT &trans &trans  &trans &kp N3    /* */ &trans &trans &trans &trans &trans
+				&kp LALT &kp N5 &sl GA3 &kp N4 &kp GRAVE /* */ &trans &trans &trans &trans &trans
+				                &trans  &trans &trans    /* */ &trans &trans &trans
+			>;
+		};
+
+		game3_layer {
+			bindings = <
+				&trans &trans          &trans   &trans &trans /* */ &trans &trans &trans &trans &trans
+				&trans &kp LS(F2)      &trans   &kp F2 &trans /* */ &trans &trans &trans &trans &trans
+				&trans &kp LG(LS(S))   &kp LGUI &trans &trans /* */ &trans &trans &trans &trans &trans
+				                       &trans   &trans &trans /* */ &trans &trans &trans
+			>;
+		};
+
+		mouse_layer {
+			bindings = <
+				&trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
+				&trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
+				&trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
+				              &trans &trans &trans /* */ &trans &trans &trans
+			>;
+		};
+
+		number_pad_layer {
+			bindings = <
+				&trans &trans &trans &trans &trans /* */ &kp PLUS     &kp N7 &kp N8 &kp N9 &kp STAR
+				&trans &trans &trans &trans &trans /* */ &kp LS(PLUS) &kp N4 &kp N5 &kp N6 &kp DOT
+				&trans &trans &trans &trans &trans /* */ &kp MINUS    &kp N1 &kp N2 &kp N3 &kp SLASH
+				              &trans &trans &trans /* */ &kp N0       &trans &trans
+			>;
+		};
+
+		function_layer {
+			bindings = <
+				&trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
+				&trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
+				&trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
+				              &trans &trans &trans /* */ &trans &trans &trans
+			>;
+		};
+
+		symbol_layer {
+			bindings = <
+				&trans        &kp SQT   &kp LBKT &kp RBKT &trans /* */ &trans  &trans &trans &trans &trans
+				&kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &trans /* */ &trans  &trans &trans &trans &trans
+				&kp BACKSLASH &kp DQT   &kp LBRC &kp RBRC &trans /* */ &trans  &trans &trans &trans &trans
+				                        &trans   &trans   &trans /* */ &kp DEL &trans &trans
+			>;
+		};
+
+		nav_layer {
+			bindings = <
+				&kp INS &kp HOME &kp UP   &kp END   &trans    /* */ &trans &trans &trans &trans &trans
+				&kp TAB &kp LEFT &kp DOWN &kp RIGHT &kp PG_UP /* */ &trans &trans &trans &trans &trans
+				&kp DEL &trans   &trans   &trans    &kp PG_DN /* */ &trans &trans &trans &trans &trans
+				                 &trans   &trans    &trans    /* */ &trans &trans &trans
 			>;
 		};
 	};
