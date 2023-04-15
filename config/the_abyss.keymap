@@ -12,6 +12,12 @@
     combos {
         compatible = "zmk,combos";
 
+        combo_bt_clear {
+            timeout-ms = <100>;
+            key-positions = <21 22 23>;
+            bindings = <&bt BT_CLR>;
+        };
+
     // shortcut
     #define COMBO(NAME, BINDINGS, KEYPOS, TIMEOUT) \
           combo_##NAME { \
@@ -30,8 +36,6 @@
                   ╰────────────╯ ╰────────────╯        */
 
         COMBO(caps_word, &caps_word, 31 34, 60)
-
-        COMBO(reset_left, &bt BT_CLR, 21 22 23, 100)
 
         COMBO(reset_left, &bootloader, 20 21 22 23, 100)
         COMBO(reset_right, &bootloader, 26 27 28 29, 100)
