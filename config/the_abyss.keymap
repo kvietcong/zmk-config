@@ -216,7 +216,7 @@
         game2_layer {
             label = "Game 2";
             bindings = <
-                &kp LCTL &kp N1 &trans  &kp N1 &kp TAB   /* */ &trans &trans &trans &trans &trans
+                &kp LCTL &kp N1 &trans  &kp N2 &kp TAB   /* */ &trans &trans &trans &trans &trans
                 &kp LSFT &trans &trans  &trans &kp N3    /* */ &trans &trans &trans &trans &trans
                 &kp LALT &kp N5 &sl GA3 &kp N4 &kp GRAVE /* */ &trans &trans &trans &trans &trans
                                 &trans  &trans &trans    /* */ &trans &trans &trans
