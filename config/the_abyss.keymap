@@ -206,20 +206,20 @@
         game1_layer {
             label = "Game 1";
             bindings = <
-                &kp Q     &kp W     &kp E    &kp R       &kp T     /* */ &kp Y    &kp U          &kp I     &kp O     &kp P
-                &kp A     &kp S     &kp D    &kp F       &kp G     /* */ &kp H    &kp J          &kp K     &kp L     &kp SEMI
-                &kp Z     &kp X     &kp C    &kp V       &kp B     /* */ &kp N    &kp M          &kp COMMA &kp DOT   &kp SLASH
-                                    &kp LCTL &lt GA2 ESC &kp SPACE /* */ &kp BSPC &mt RSHFT BSPC &kp APOS
+                &kp Q     &kp W     &kp E    &kp R        &kp T     /* */ &kp Y  &kp U  &kp I     &kp O     &kp P
+                &kp A     &kp S     &kp D    &kp F        &kp G     /* */ &kp H  &kp J  &kp K     &kp L     &kp SEMI
+                &kp Z     &kp X     &kp C    &kp V        &kp B     /* */ &kp N  &kp M  &kp COMMA &kp DOT   &kp SLASH
+                                    &kp LCTL &ltg GA2 ESC &kp SPACE /* */ &trans &trans &trans
             >;
         };
 
         game2_layer {
             label = "Game 2";
             bindings = <
-                &kp LCTL &kp N1 &trans  &kp N2 &kp TAB   /* */ &trans &trans &trans &trans &trans
-                &kp LSFT &trans &trans  &trans &kp N3    /* */ &trans &trans &trans &trans &trans
-                &kp LALT &kp N5 &sl GA3 &kp N4 &kp GRAVE /* */ &trans &trans &trans &trans &trans
-                                &trans  &trans &trans    /* */ &trans &trans &trans
+                &kp LCTL &kp N1 &trans  &kp N2 &kp TAB   /* */ &trans  &trans  &trans  &trans &trans
+                &kp LSFT &trans &trans  &trans &kp N3    /* */ &trans  &trans  &mo SYM &trans &trans
+                &kp LALT &kp N5 &sl GA3 &kp N4 &kp GRAVE /* */ &trans  &trans  &trans  &trans &trans
+                                &trans  &trans &trans    /* */ &mo NUM &mo FUN &trans
             >;
         };
 
