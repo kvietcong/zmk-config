@@ -2,6 +2,7 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/macro.h>
+#include <dt-bindings/zmk/outputs.h>
 
 &caps_word {
     continue-list = <UNDERSCORE MINUS BSPC>;
@@ -107,12 +108,12 @@
             label = "Bluetooth Select";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&bt BT_SEL 0>, <&bt BT_SEL 1>, <&bt BT_SEL 2>, <&bt BT_SEL 3>, <&bt BT_SEL 4>;
+            bindings = <&bt BT_SEL 0>, <&bt BT_SEL 1>, <&bt BT_SEL 2>;
         };
 
         f1_: tap_dance_f1_ {
             compatible = "zmk,behavior-tap-dance";
-            label = "F1 to F24";
+            label = "F1_F24";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&kp F1>, <&kp F2>, <&kp F3>, <&kp F4>,
@@ -125,7 +126,7 @@
 
         f5_: tap_dance_f5_ {
             compatible = "zmk,behavior-tap-dance";
-            label = "F5 to F24";
+            label = "F5_F24";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp F5>, <&kp F6>, <&kp F7>, <&kp F8>,
@@ -137,7 +138,7 @@
 
         f9_: tap_dance_f9_ {
             compatible = "zmk,behavior-tap-dance";
-            label = "F9 to F24";
+            label = "F9_F24";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp F9>, <&kp F10>, <&kp F11>, <&kp F12>,
@@ -148,10 +149,18 @@
 
         media: tap_dance_media {
             compatible = "zmk,behavior-tap-dance";
-            label = "Media";
+            label = "TAP_DANCE_MEDIA";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <300>;
             bindings = <&kp C_PP>, <&kp C_NEXT>, <&kp C_PREV>;
+        };
+
+        output: tap_output {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_OUTPUT";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&out OUT_USB>, <&kp OUT_BLE>;
         };
 
         ltg: layer_tap_game {
@@ -279,7 +288,7 @@
                 &trans &trans &trans &trans &trans  /* */ &kp C_MUTE &kp PSCRN     &kp PAUSE_BREAK &kp KP_NUMLOCK  &kp C_VOL_UP
                 &trans &trans &trans &trans &to GA1 /* */ &bt BT_CLR &f1_          &f5_            &f9_            &media
                 &trans &trans &trans &trans &trans  /* */ &bt_sel    &kp LG(LS(S)) &kp LG(L)       &kp LC(LS(ESC)) &kp C_VOL_DN
-                              &trans &trans &trans  /* */ &trans     &trans        &trans
+                              &trans &trans &trans  /* */ &trans     &output       &trans
             >;
         };
 
