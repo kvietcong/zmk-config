@@ -1,6 +1,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/macro.h>
 
 &caps_word {
     continue-list = <UNDERSCORE MINUS BSPC>;
@@ -161,6 +162,24 @@
             tapping-term-ms = <160>;
             bindings = <&mo>, <&kp>;
         };
+
+        tt: tap_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TAP_TAP";
+            #binding-cells = <2>;
+            tapping_term_ms = <420>;
+            flavor = "tap-preferred";
+            bindings = <&tap_kp>, <&kp>;
+        };
+    };
+
+    macros {
+        tap_kp: macro_tap_kp {
+            #binding-cells = <1>;
+            label = "MACRO_TAP_KP";
+            compatible = "zmk,behavior-macro-one-param";
+            bindings = <&macro_param_1to1 &macro_tap &kp MACRO_PLACEHOLDER>;
+        };
     };
 
     combos {
@@ -196,10 +215,10 @@
         base_layer {
             label = "Base";
             bindings = <
-                &kp Q       &kp W       &kp E      &kp R         &kp T         /* */ &kp Y        &kp U           &kp I      &kp O       &kp P
-                &hms LGUI A &lhm LALT S &lhl NUM D &lhm LCTL F   &lhm LSFT G   /* */ &rhm RSFT H  &rhm RCTL J     &rhl SYM K &rhm RALT L &hms RGUI SEMI
-                &kp Z       &kp X       &kp C      &kp V         &kp B         /* */ &kp N        &kp M           &kp COMMA  &kp DOT     &kp SLASH
-                                        &kp TAB    &tm LSHFT ESC &tl FUN SPACE /* */ &tl NAV BSPC &tm RSHFT ENTER &kp APOS
+                &kp Q       &kp W       &kp E       &tt LG(LS(S)) R &kp T         /* */ &kp Y        &kp U           &kp I      &kp O       &kp P
+                &hms LGUI A &lhm LALT S &lhl NUM D  &lhm LCTL F     &lhm LSFT G   /* */ &rhm RSFT H  &rhm RCTL J     &rhl SYM K &rhm RALT L &hms RGUI SEMI
+                &tt LC(Z) Z &tt LC(X) X &tt LC(C) C &tt LC(V) V     &kp B         /* */ &kp N        &kp M           &kp COMMA  &kp DOT     &kp SLASH
+                                        &kp TAB     &tm LSHFT ESC   &tl FUN SPACE /* */ &tl NAV BSPC &tm RSHFT ENTER &kp APOS
             >;
         };
 
@@ -247,7 +266,7 @@
         number_pad_layer {
             label = "Numbers";
             bindings = <
-                &trans &trans &trans &trans &trans /* */ &kp PLUS  &kp N7 &kp N8 &kp N9 &kp STAR
+                &trans &trans &trans &trans &trans /* */ &kp PLUS  &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
                 &trans &trans &trans &trans &trans /* */ &kp EQUAL &kp N4 &kp N5 &kp N6 &kp DOT
                 &trans &trans &trans &trans &trans /* */ &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH
                               &trans &trans &trans /* */ &trans    &kp N0 &trans
