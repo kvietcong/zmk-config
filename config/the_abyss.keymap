@@ -111,6 +111,15 @@
             bindings = <&bt BT_SEL 0>, <&bt BT_SEL 1>, <&bt BT_SEL 2>;
         };
 
+        n0_: tap_dance_n0_ {
+            compatible = "zmk,behavior-tap-dance";
+            label = "0_9";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&kp N0>, <&kp N1>, <&kp N2>, <&kp N3>, <&kp N4>,
+                       <&kp N5>, <&kp N6>, <&kp N7>, <&kp N8>, <&kp N9>;
+        };
+
         f1_: tap_dance_f1_ {
             compatible = "zmk,behavior-tap-dance";
             label = "F1_F24";
@@ -254,10 +263,10 @@
         game3_layer {
             label = "Game 3";
             bindings = <
-                &trans &trans        &trans   &trans &trans  /* */ &trans &trans &trans &trans &trans
-                &trans &kp LS(F2)    &trans   &kp F2 &to BAS /* */ &trans &trans &trans &trans &trans
-                &trans &kp LG(LS(S)) &kp LGUI &f1_   &trans  /* */ &trans &trans &trans &trans &trans
-                                     &trans   &trans &trans  /* */ &trans &trans &trans
+                &trans &trans       &trans   &trans &trans  /* */ &trans &trans &trans &trans &trans
+                &trans &kp LS(F2)   &n0_     &kp F2 &to BAS /* */ &trans &trans &trans &trans &trans
+                &trans &kp LA(HOME) &kp LGUI &f1_   &trans  /* */ &trans &trans &trans &trans &trans
+                                    &trans   &trans &trans  /* */ &trans &trans &trans
             >;
         };
 
