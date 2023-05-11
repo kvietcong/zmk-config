@@ -137,7 +137,7 @@
             compatible = "zmk,behavior-tap-dance";
             label = "F5_F24";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <300>;
             bindings = <&kp F5>, <&kp F6>, <&kp F7>, <&kp F8>,
                        <&kp F9>, <&kp F10>, <&kp F11>, <&kp F12>,
                        <&kp F13>, <&kp F14>, <&kp F15>, <&kp F16>,
@@ -149,7 +149,7 @@
             compatible = "zmk,behavior-tap-dance";
             label = "F9_F24";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <300>;
             bindings = <&kp F9>, <&kp F10>, <&kp F11>, <&kp F12>,
                        <&kp F13>, <&kp F14>, <&kp F15>, <&kp F16>,
                        <&kp F17>, <&kp F18>, <&kp F19>, <&kp F20>,
@@ -243,10 +243,10 @@
         game1_layer {
             label = "Game 1";
             bindings = <
-                &kp Q     &kp W     &kp E    &kp R        &kp T     /* */ &kp Y  &kp U  &kp I     &kp O     &kp P
-                &kp A     &kp S     &kp D    &kp F        &kp G     /* */ &kp H  &kp J  &kp K     &kp L     &kp SEMI
-                &kp Z     &kp X     &kp C    &kp V        &kp B     /* */ &kp N  &kp M  &kp COMMA &kp DOT   &kp SLASH
-                                    &kp LCTL &ltg GA2 ESC &kp SPACE /* */ &trans &trans &trans
+                &kp Q     &kp W     &kp E   &kp R        &kp T     /* */ &kp Y  &kp U  &kp I     &kp O     &kp P
+                &kp A     &kp S     &kp D   &kp F        &kp G     /* */ &kp H  &kp J  &kp K     &kp L     &kp SEMI
+                &kp Z     &kp X     &kp C   &kp V        &kp B     /* */ &kp N  &kp M  &kp COMMA &kp DOT   &kp SLASH
+                                    &kp TAB &ltg GA2 ESC &kp SPACE /* */ &trans &trans &trans
             >;
         };
 
