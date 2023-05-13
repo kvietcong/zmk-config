@@ -8,14 +8,16 @@
 };
 
 #define BAS 0
-#define GA1 1
-#define GA2 2
-#define GA3 3
-#define MOU 4
-#define NUM 5
-#define FUN 6
-#define SYM 7
-#define NAV 8
+#define MO1 1
+#define MO2 2
+#define GA1 3
+#define GA2 4
+#define GA3 5
+#define MOU 6
+#define NUM 7
+#define FUN 8
+#define SYM 9
+#define NAV 10
 
 /*                KEY POSITIONS
 
@@ -28,16 +30,6 @@
 
 / {
     behaviors {
-        skq: sticky_key_quick_release {
-            compatible = "zmk,behavior-sticky-key";
-            label = "STICKY_KEY_QUICK_RELEASE";
-            #binding-cells = <1>;
-            bindings = <&kp>;
-            release-after-ms = <1000>;
-            quick-release;
-            ignore-modifiers;
-        };
-
         bt_sel: tap_dance_bluetooth_select {
             compatible = "zmk,behavior-tap-dance";
             label = "Bluetooth Select";
@@ -141,10 +133,30 @@
         base_layer {
             label = "Base";
             bindings = <
-                &kp Q &kp W  &kp E   &kp R   &kp T     /* */ &kp Y    &kp U     &kp I     &kp O   &kp P
-                &kp A &kp S  &kp D   &kp F   &kp G     /* */ &kp H    &kp J     &kp K     &kp L   &kp SEMI
-                &kp Z &kp X  &kp C   &kp V   &kp B     /* */ &kp N    &kp M     &kp COMMA &kp DOT &kp SLASH
-                             &kp TAB &kp ESC &kp SPACE /* */ &kp BSPC &kp ENTER &kp APOS
+                &kp Q &kp W  &kp E   &kp R     &kp T   /* */ &kp Y   &kp U    &kp I     &kp O   &kp P
+                &kp A &kp S  &kp D   &kp F     &kp G   /* */ &kp H   &kp J    &kp K     &kp L   &kp SEMI
+                &kp Z &kp X  &kp C   &kp V     &kp B   /* */ &kp N   &kp M    &kp COMMA &kp DOT &kp SLASH
+                             &kp TAB &kp SPACE &sl MO1 /* */ &sl MO2 &kp BSPC &kp APOS
+            >;
+        };
+
+        mod_one {
+            label = "Mod One";
+            bindings = <
+                &trans   &trans   &trans     &trans    &trans  /* */ &trans &trans  &trans &trans &trans
+                &kp LWIN &sk LALT &sk LSHIFT &sk LCTRL &trans  /* */ &trans &mo SYM &mo NAV &trans &trans
+                &trans   &trans   &trans     &trans    &trans  /* */ &trans &trans  &trans &trans &trans
+                                  &trans     &kp DEL   &kp ESC /* */ &trans &trans  &trans
+            >;
+        };
+
+        mod_two {
+            label = "Mod Two";
+            bindings = <
+                &trans &trans &trans  &trans  &trans /* */ &trans    &trans    &trans     &trans   &trans
+                &trans &trans &mo FUN &mo NUM &trans /* */ &trans    &sk RCTRL &sk RSHIFT &sk RALT &kp RWIN
+                &trans &trans &trans  &trans  &trans /* */ &trans    &trans    &trans     &trans   &trans
+                              &trans  &trans  &trans /* */ &kp ENTER &kp DEL   &trans
             >;
         };
 
