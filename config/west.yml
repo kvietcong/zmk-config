@@ -5,13 +5,13 @@ manifest:
     - name: petejohanson
       url-base: https://github.com/petejohanson
   projects:
-    # - name: zmk
-    #   remote: zmkfirmware
-    #   revision: main
-    #   import: app/west.yml
     - name: zmk
-      remote: petejohanson
-      revision: behaviors/macro-parameters
+      remote: zmkfirmware
+      revision: main
       import: app/west.yml
+    # - name: zmk
+    #   remote: petejohanson
+    #   revision: behaviors/macro-parameters
+    #   import: app/west.yml
   self:
     path: config
