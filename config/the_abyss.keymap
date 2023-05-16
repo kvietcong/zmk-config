@@ -144,7 +144,7 @@
             label = "Mod One";
             bindings = <
                 &trans   &trans   &trans     &trans    &trans  /* */ &kp PLUS  &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
-                &kp LWIN &sk LALT &sk LSHIFT &sk LCTRL &trans  /* */ &kp EQUAL &kp N4 &kp N5 &kp N6 &kp DOT
+                &kp LWIN &sk LALT &sk LSHIFT &sk LCTRL &sl FUN /* */ &kp EQUAL &kp N4 &kp N5 &kp N6 &kp DOT
                 &trans   &trans   &trans     &trans    &trans  /* */ &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH
                                   &to GA1    &kp DEL   &kp ESC /* */ &sl NAV   &kp N0 &trans
             >;
@@ -154,7 +154,7 @@
             label = "Mod Two";
             bindings = <
                 &trans        &kp SQT   &kp LBKT &kp RBKT &trans  /* */ &trans    &trans    &trans     &trans   &trans
-                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &trans  /* */ &trans    &sk RCTRL &sk RSHIFT &sk RALT &kp RWIN
+                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &trans  /* */ &sl NAV   &sk RCTRL &sk RSHIFT &sk RALT &kp RWIN
                 &kp BACKSLASH &kp DQT   &kp LBRC &kp RBRC &trans  /* */ &trans    &trans    &trans     &trans   &trans
                                         &trans   &trans   &sl FUN /* */ &kp ENTER &kp DEL   &trans
             >;
@@ -173,10 +173,10 @@
         game2_layer {
             label = "Game 2";
             bindings = <
-                &kp LCTL &kp N1 &trans  &kp N2 &kp TAB   /* */ &trans  &trans  &trans  &trans &trans
-                &kp LSFT &trans &trans  &trans &kp N3    /* */ &trans  &trans  &mo SYM &trans &trans
-                &kp LALT &kp N5 &sl GA3 &kp N4 &kp GRAVE /* */ &trans  &trans  &trans  &trans &trans
-                                &to BAS &trans &kp ESC   /* */ &mo NUM &mo FUN &trans
+                &kp LCTL &kp N1 &trans  &kp N2 &kp TAB   /* */ &trans  &trans  &trans &trans &trans
+                &kp LSFT &trans &trans  &trans &kp N3    /* */ &sl NAV &trans  &trans &trans &trans
+                &kp LALT &kp N5 &sl GA3 &kp N4 &kp GRAVE /* */ &trans  &trans  &trans &trans &trans
+                                &to BAS &trans &kp ESC   /* */ &sl NUM &sl FUN &sl SYM
             >;
         };
 
