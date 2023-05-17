@@ -103,28 +103,38 @@
     combos {
         compatible = "zmk,combos";
 
-        // Shortcut
-        #define COMBO(NAME, BINDINGS, KEYPOS, TIMEOUT) \
-            combo_##NAME { \
-                timeout-ms = <TIMEOUT>; \
-                bindings = <BINDINGS>; \
-                key-positions = <KEYPOS>; \
-            };
-
-        #define COMBO_L(NAME, BINDINGS, KEYPOS, TIMEOUT, LAYERS) \
+        // Combo Macros
+        #define COMBO(NAME, BINDINGS, KEYPOS, TIMEOUT, LAYERS) \
             combo_##NAME { \
                 timeout-ms = <TIMEOUT>; \
                 bindings = <BINDINGS>; \
                 key-positions = <KEYPOS>; \
                 layers = <LAYERS>; \
+                slow-release; \
             };
 
-        COMBO(caps_word, &caps_word, 14 15, 80)
+        #define COMBO_NO_GAME(NAME, BINDINGS, KEYPOS, TIMEOUT) \
+            COMBO(NAME, BINDINGS, KEYPOS, TIMEOUT, BAS MO1 MO2 MOU NUM FUN SYM NAV)
 
-        COMBO_L(reset_left, &sys_reset, 21 22 23, 50, BAS)
-        COMBO_L(reset_right, &sys_reset, 26 27 28, 50, BAS)
-        COMBO_L(bootloader_left, &bootloader, 20 21 22 23, 50, BAS)
-        COMBO_L(bootloader_right, &bootloader, 26 27 28 29, 50, BAS)
+        // For some reason, I can't pass -1 as a layer to the COMBO macro
+        #define COMBO_ALL(NAME, BINDINGS, KEYPOS, TIMEOUT) \
+            combo_##NAME { \
+                timeout-ms = <TIMEOUT>; \
+                bindings = <BINDINGS>; \
+                key-positions = <KEYPOS>; \
+                slow-release; \
+            };
+
+        COMBO_NO_GAME(caps_word, &caps_word, 31 34, 80)
+
+        COMBO_NO_GAME(sk_lctrl , &sk LCTRL , 31 13, 50)
+        COMBO_NO_GAME(sk_rctrl , &sk RCTRL , 34 16, 50)
+        COMBO_NO_GAME(sk_lalt  , &sk LALT  , 31 12, 50)
+        COMBO_NO_GAME(sk_ralt  , &sk RALT  , 34 17, 50)
+        COMBO_NO_GAME(sk_lwin  , &sk LWIN  , 31 11, 50)
+        COMBO_NO_GAME(sk_rwin  , &sk RWIN  , 34 18, 50)
+        COMBO_NO_GAME(sk_lshift, &sk LSHIFT, 31 10, 50)
+        COMBO_NO_GAME(sk_rshift, &sk RSHIFT, 34 19, 50)
     };
 
     keymap {
@@ -133,10 +143,10 @@
         base_layer {
             label = "Base";
             bindings = <
-                &kp Q &kp W  &kp E   &kp R     &kp T   /* */ &kp Y   &kp U    &kp I     &kp O   &kp P
-                &kp A &kp S  &kp D   &kp F     &kp G   /* */ &kp H   &kp J    &kp K     &kp L   &kp SEMI
-                &kp Z &kp X  &kp C   &kp V     &kp B   /* */ &kp N   &kp M    &kp COMMA &kp DOT &kp SLASH
-                             &kp TAB &kp SPACE &sl MO1 /* */ &sl MO2 &kp BSPC &kp APOS
+                &kp Q &kp W  &kp E   &kp R            &kp T   /* */ &kp Y   &kp U           &kp I     &kp O   &kp P
+                &kp A &kp S  &kp D   &kp F            &kp G   /* */ &kp H   &kp J           &kp K     &kp L   &kp SEMI
+                &kp Z &kp X  &kp C   &kp V            &kp B   /* */ &kp N   &kp M           &kp COMMA &kp DOT &kp SLASH
+                             &kp ESC &mt LSHIFT SPACE &sl MO1 /* */ &sl MO2 &mt RSHIFT BSPC &kp ENTER
             >;
         };
 
@@ -146,17 +156,17 @@
                 &trans   &trans   &trans     &trans    &trans  /* */ &kp PLUS  &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
                 &kp LWIN &sk LALT &sk LSHIFT &sk LCTRL &sl FUN /* */ &kp EQUAL &kp N4 &kp N5 &kp N6 &kp DOT
                 &trans   &trans   &trans     &trans    &trans  /* */ &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH
-                                  &to GA1    &kp DEL   &kp ESC /* */ &sl NAV   &kp N0 &trans
+                                  &to GA1    &kp DEL   &kp TAB /* */ &sl NAV   &kp N0 &trans
             >;
         };
 
         mod_two {
             label = "Mod Two";
             bindings = <
-                &trans        &kp SQT   &kp LBKT &kp RBKT &trans  /* */ &trans    &trans    &trans     &trans   &trans
-                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &trans  /* */ &sl NAV   &sk RCTRL &sk RSHIFT &sk RALT &kp RWIN
-                &kp BACKSLASH &kp DQT   &kp LBRC &kp RBRC &trans  /* */ &trans    &trans    &trans     &trans   &trans
-                                        &trans   &trans   &sl FUN /* */ &kp ENTER &kp DEL   &trans
+                &trans        &kp SQT   &kp LBKT &kp RBKT &trans  /* */ &trans   &trans    &trans     &trans   &trans
+                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &trans  /* */ &sl NAV  &sk RCTRL &sk RSHIFT &sk RALT &kp RWIN
+                &kp BACKSLASH &kp DQT   &kp LBRC &kp RBRC &trans  /* */ &trans   &trans    &trans     &trans   &trans
+                                        &trans   &trans   &sl FUN /* */ &kp APOS &kp DEL   &trans
             >;
         };
 
