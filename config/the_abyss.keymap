@@ -1,23 +1,17 @@
+// vim: set ft=dts:
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 
-&caps_word {
-    continue-list = <UNDERSCORE MINUS BSPC>;
-};
-
 #define BAS 0
-#define MO1 1
-#define MO2 2
+#define LOW 1
+#define UPP 2
 #define GA1 3
 #define GA2 4
 #define GA3 5
-#define MOU 6
-#define NUM 7
-#define FUN 8
-#define SYM 9
-#define NAV 10
+#define FUN 6
+#define NAV 7
 
 /*                KEY POSITIONS
 
@@ -28,11 +22,17 @@
   ╰───────╮ 30  31  32 │ │ 33  34  35 ╭───────╯
           ╰────────────╯ ╰────────────╯        */
 
+&mt {
+    flavor = "balanced";
+    quick-tap-ms = <200>;
+    tapping-term-ms = <400>;
+};
+&caps_word { continue-list = <UNDERSCORE MINUS BSPC>; };
+
 / {
     behaviors {
         bt_sel: tap_dance_bluetooth_select {
-            compatible = "zmk,behavior-tap-dance";
-            label = "Bluetooth Select";
+            compatible = "zmk,behavior-tap-dance"; label = "Bluetooth Select";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&bt BT_SEL 0>, <&bt BT_SEL 1>, <&bt BT_SEL 2>;
@@ -98,6 +98,15 @@
             tapping-term-ms = <300>;
             bindings = <&out OUT_USB>, <&kp OUT_BLE>;
         };
+
+        esc_tab: mod_morph_esc_tab {
+            compatible = "zmk,behavior-mod-morph";
+            label = "esc_tab";
+            #binding-cells = <0>;
+            bindings = <&kp ESC>, <&kp TAB>;
+            mods = <(MOD_LALT|MOD_RALT)>;
+            keep-mods = <(MOD_LALT|MOD_RALT)>;
+        };
     };
 
     combos {
@@ -113,9 +122,6 @@
                 slow-release; \
             };
 
-        #define COMBO_NO_GAME(NAME, BINDINGS, KEYPOS, TIMEOUT) \
-            COMBO(NAME, BINDINGS, KEYPOS, TIMEOUT, BAS MO1 MO2 MOU NUM FUN SYM NAV)
-
         // For some reason, I can't pass -1 as a layer to the COMBO macro
         #define COMBO_ALL(NAME, BINDINGS, KEYPOS, TIMEOUT) \
             combo_##NAME { \
@@ -125,99 +131,80 @@
                 slow-release; \
             };
 
-        COMBO_NO_GAME(caps_word, &caps_word, 31 34, 80)
+        #define DEFAULT_LAYERS BAS LOW UPP GA2 GA3 FUN NAV
 
-        COMBO_NO_GAME(sk_lctrl , &sk LCTRL , 31 13, 50)
-        COMBO_NO_GAME(sk_rctrl , &sk RCTRL , 34 16, 50)
-        COMBO_NO_GAME(sk_lalt  , &sk LALT  , 31 12, 50)
-        COMBO_NO_GAME(sk_ralt  , &sk RALT  , 34 17, 50)
-        COMBO_NO_GAME(sk_lwin  , &sk LWIN  , 31 11, 50)
-        COMBO_NO_GAME(sk_rwin  , &sk RWIN  , 34 18, 50)
-        COMBO_NO_GAME(sk_lshift, &sk LSHIFT, 31 10, 50)
-        COMBO_NO_GAME(sk_rshift, &sk RSHIFT, 34 19, 50)
+        COMBO(caps_word, &caps_word, 31 34, 80, DEFAULT_LAYERS)
+
+        COMBO(sk_lctrl , &sk LCTRL , 31 13, 80, DEFAULT_LAYERS)
+        COMBO(sk_rctrl , &sk RCTRL , 34 16, 80, DEFAULT_LAYERS)
+        COMBO(sk_lalt  , &sk LALT  , 31 12, 80, DEFAULT_LAYERS)
+        COMBO(sk_ralt  , &sk RALT  , 34 17, 80, DEFAULT_LAYERS)
+        COMBO(lwin     , &kp LWIN  , 31 11, 80, DEFAULT_LAYERS)
+        COMBO(rwin     , &kp RWIN  , 34 18, 80, DEFAULT_LAYERS)
+        COMBO(sk_lshift, &sk LSHIFT, 31 10, 80, DEFAULT_LAYERS)
+        COMBO(sk_rshift, &sk RSHIFT, 34 19, 80, DEFAULT_LAYERS)
     };
 
     keymap {
         compatible = "zmk,keymap";
 
         base_layer {
-            label = "Base";
+            label = "BAS";
             bindings = <
-                &kp Q &kp W  &kp E   &kp R            &kp T   /* */ &kp Y   &kp U           &kp I     &kp O   &kp P
-                &kp A &kp S  &kp D   &kp F            &kp G   /* */ &kp H   &kp J           &kp K     &kp L   &kp SEMI
-                &kp Z &kp X  &kp C   &kp V            &kp B   /* */ &kp N   &kp M           &kp COMMA &kp DOT &kp SLASH
-                             &kp ESC &mt LSHIFT SPACE &sl MO1 /* */ &sl MO2 &mt RSHIFT BSPC &kp ENTER
+                &kp Q &kp W  &kp E    &kp R            &kp T   /* */ &kp Y   &kp U           &kp I     &kp O   &kp P
+                &kp A &kp S  &kp D    &kp F            &kp G   /* */ &kp H   &kp J           &kp K     &kp L   &kp SEMI
+                &kp Z &kp X  &kp C    &kp V            &kp B   /* */ &kp N   &kp M           &kp COMMA &kp DOT &kp SLASH
+                             &esc_tab &mt LSHIFT SPACE &sl LOW /* */ &sl UPP &mt RSHIFT BSPC &kp ENTER
             >;
         };
 
-        mod_one {
-            label = "Mod One";
+        lower_layer {
+            label = "LOW";
             bindings = <
-                &trans   &trans   &trans     &trans    &trans  /* */ &kp PLUS  &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
-                &kp LWIN &sk LALT &sk LSHIFT &sk LCTRL &sl FUN /* */ &kp EQUAL &kp N4 &kp N5 &kp N6 &kp DOT
-                &trans   &trans   &trans     &trans    &trans  /* */ &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH
-                                  &to GA1    &kp DEL   &kp TAB /* */ &sl NAV   &kp N0 &trans
+                &kp N1   &kp N2   &kp N3  &kp N4     &kp N5  /* */ &kp PLUS  &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
+                &trans   &trans   &trans  &sl FUN    &trans  /* */ &kp EQUAL &kp N4 &kp N5 &kp N6 &kp DOT
+                &trans   &trans   &trans  &trans     &trans  /* */ &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH
+                                  &to GA1 &sk LSHIFT &kp DEL /* */ &sl NAV   &trans &kp N0
             >;
         };
 
-        mod_two {
-            label = "Mod Two";
+        upper_layer {
+            label = "UPP";
             bindings = <
-                &trans        &kp SQT   &kp LBKT &kp RBKT &trans  /* */ &trans   &trans    &trans     &trans   &trans
-                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &trans  /* */ &sl NAV  &sk RCTRL &sk RSHIFT &sk RALT &kp RWIN
-                &kp BACKSLASH &kp DQT   &kp LBRC &kp RBRC &trans  /* */ &trans   &trans    &trans     &trans   &trans
-                                        &trans   &trans   &sl FUN /* */ &kp APOS &kp DEL   &trans
+                &trans        &kp SQT   &kp LBKT &kp RBKT &trans  /* */ &trans  &trans     &trans &trans &trans
+                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &trans  /* */ &trans  &sl NAV    &trans &trans &trans
+                &kp BACKSLASH &kp DQT   &kp LBRC &kp RBRC &trans  /* */ &trans  &trans     &trans &trans &trans
+                                        &trans   &trans   &sl FUN /* */ &kp TAB &sk LSHIFT &trans
             >;
         };
 
         game1_layer {
-            label = "Game 1";
+            label = "GA1";
             bindings = <
-                &kp Q     &kp W     &kp E   &kp R     &kp T   /* */ &kp Y  &kp U  &kp I     &kp O     &kp P
-                &kp A     &kp S     &kp D   &kp F     &kp G   /* */ &kp H  &kp J  &kp K     &kp L     &kp SEMI
-                &kp Z     &kp X     &kp C   &kp V     &kp B   /* */ &kp N  &kp M  &kp COMMA &kp DOT   &kp SLASH
-                                    &kp TAB &kp SPACE &sl GA2 /* */ &trans &trans &trans
+                &kp Q     &kp W     &kp E    &kp R     &kp T   /* */ &kp Y  &kp U  &kp I     &kp O     &kp P
+                &kp A     &kp S     &kp D    &kp F     &kp G   /* */ &kp H  &kp J  &kp K     &kp L     &kp SEMI
+                &kp Z     &kp X     &kp C    &kp V     &kp B   /* */ &kp N  &kp M  &kp COMMA &kp DOT   &kp SLASH
+                                    &esc_tab &kp SPACE &sl GA2 /* */ &trans &trans &trans
             >;
         };
 
         game2_layer {
-            label = "Game 2";
+            label = "GA2";
             bindings = <
                 &kp LCTL &kp N1 &trans  &kp N2 &kp TAB   /* */ &trans  &trans  &trans &trans &trans
                 &kp LSFT &trans &trans  &trans &kp N3    /* */ &sl NAV &trans  &trans &trans &trans
                 &kp LALT &kp N5 &sl GA3 &kp N4 &kp GRAVE /* */ &trans  &trans  &trans &trans &trans
-                                &to BAS &trans &kp ESC   /* */ &sl NUM &sl FUN &sl SYM
+                                &to BAS &trans &esc_tab  /* */ &sl LOW &sl FUN &sl UPP
             >;
         };
 
         game3_layer {
-            label = "Game 3";
+            label = "GA3";
             bindings = <
                 &trans &trans       &trans   &trans &trans  /* */ &trans &trans &trans &trans &trans
                 &trans &kp LS(F2)   &n0_     &kp F2 &to BAS /* */ &trans &trans &trans &trans &trans
                 &trans &kp LA(HOME) &kp LGUI &f1_   &trans  /* */ &trans &trans &trans &trans &trans
                                     &trans   &trans &trans  /* */ &trans &trans &trans
-            >;
-        };
-
-        // No mouse support in ZMK yet
-        mouse_layer {
-            label = "Mouse";
-            bindings = <
-                &trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
-                              &trans &trans &trans /* */ &trans &trans &trans
-            >;
-        };
-
-        number_pad_layer {
-            label = "Numbers";
-            bindings = <
-                &trans &trans &trans &trans &trans /* */ &kp PLUS  &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
-                &trans &trans &trans &trans &trans /* */ &kp EQUAL &kp N4 &kp N5 &kp N6 &kp DOT
-                &trans &trans &trans &trans &trans /* */ &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH
-                              &trans &trans &trans /* */ &trans    &kp N0 &trans
             >;
         };
 
@@ -228,16 +215,6 @@
                 &trans &trans &trans &trans &to GA1 /* */ &bt BT_CLR &f1_          &f5_            &f9_            &media
                 &trans &trans &trans &trans &trans  /* */ &bt_sel    &kp LG(LS(S)) &kp LG(L)       &kp LC(LS(ESC)) &kp C_VOL_DN
                               &trans &trans &trans  /* */ &trans     &output       &trans
-            >;
-        };
-
-        symbol_layer {
-            label = "Symbols";
-            bindings = <
-                &trans        &kp SQT   &kp LBKT &kp RBKT &trans /* */ &trans  &trans &trans &trans &trans
-                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &trans /* */ &trans  &trans &trans &trans &trans
-                &kp BACKSLASH &kp DQT   &kp LBRC &kp RBRC &trans /* */ &trans  &trans &trans &trans &trans
-                                        &trans   &trans   &trans /* */ &kp DEL &trans &trans
             >;
         };
 
@@ -252,3 +229,10 @@
         };
     };
 };
+
+// Empty keymap
+// &trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
+// &trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
+// &trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
+//               &trans &trans &trans /* */ &trans &trans &trans
+
