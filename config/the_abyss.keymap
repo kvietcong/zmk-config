@@ -5,31 +5,145 @@
 #include <dt-bindings/zmk/outputs.h>
 
 #define BAS 0
-#define LOW 1
-#define UPP 2
-#define GA1 3
-#define GA2 4
-#define GA3 5
-#define FUN 6
+#define GA1 1
+#define GA2 2
+#define GA3 3
+#define NUM 4
+#define FUN 5
+#define SYM 6
 #define NAV 7
 
-/*                KEY POSITIONS
-
-  ╭────────────────────╮ ╭────────────────────╮
-  │  0   1   2   3   4 │ │  5   6   7   8   9 │
-  │ 10  11  12  13  14 │ │ 15  16  17  18  19 │
-  │ 20  21  22  23  24 │ │ 25  26  27  28  29 │
-  ╰───────╮ 30  31  32 │ │ 33  34  35 ╭───────╯
-          ╰────────────╯ ╰────────────╯        */
-
-&mt {
-    flavor = "balanced";
-    quick-tap-ms = <200>;
-    tapping-term-ms = <400>;
-};
-&caps_word { continue-list = <UNDERSCORE MINUS BSPC>; };
-
 / {
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            label = "BAS";
+            bindings = <
+                &kp Q &kp W  &kp E    &kp R     &kp T   /* */ &kp Y   &kp U    &kp I     &kp O   &kp P
+                &kp A &kp S  &kp D    &kp F     &kp G   /* */ &kp H   &kp J    &kp K     &kp L   &kp SEMI
+                &kp Z &kp X  &kp C    &kp V     &kp B   /* */ &kp N   &kp M    &kp COMMA &kp DOT &kp SLASH
+                             &esc_tab &kp SPACE &sl NUM /* */ &sl SYM &kp BSPC &kp ENTER
+            >;
+        };
+
+        game1_layer {
+            label = "GA1";
+            bindings = <
+                &kp Q     &kp W     &kp E  &kp R     &kp T   /* */ &kp Y  &kp U  &kp I     &kp O     &kp P
+                &kp A     &kp S     &kp D  &kp F     &kp G   /* */ &kp H  &kp J  &kp K     &kp L     &kp SEMI
+                &kp Z     &kp X     &kp C  &kp V     &kp B   /* */ &kp N  &kp M  &kp COMMA &kp DOT   &kp SLASH
+                                    &trans &kp SPACE &sl GA2 /* */ &trans &trans &trans
+            >;
+        };
+
+        game2_layer {
+            label = "GA2";
+            bindings = <
+                &kp LCTL &kp N1 &trans  &kp N2 &kp N0    /* */ &trans  &trans  &trans &trans &trans
+                &kp LSFT &trans &trans  &trans &kp N3    /* */ &sl NAV &trans  &trans &trans &trans
+                &kp LALT &kp N5 &kp TAB &kp N4 &kp GRAVE /* */ &trans  &trans  &trans &trans &trans
+                                &to BAS &trans &sl GA3   /* */ &sl NAV &sl FUN &sl SYM
+            >;
+        };
+
+        game3_layer {
+            label = "GA3";
+            bindings = <
+                &trans &trans       &trans   &trans &trans  /* */ &trans &trans &trans &trans &trans
+                &trans &kp LS(F2)   &n0_     &kp F2 &to BAS /* */ &trans &trans &trans &trans &trans
+                &trans &kp LA(HOME) &kp LGUI &f1_   &trans  /* */ &trans &trans &trans &trans &trans
+                                    &trans   &trans &trans  /* */ &trans &trans &trans
+            >;
+        };
+
+        number_layer {
+            label = "NUM";
+            bindings = <
+                &trans &trans &trans  &trans  &trans  /* */ &kp PLUS  &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
+                &kp N1 &kp N2 &kp N3  &kp N4  &kp N5  /* */ &kp EQUAL &kp N4 &kp N5 &kp N6 &kp DOT
+                &trans &trans &trans  &trans  &trans  /* */ &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH
+                              &to GA1 &kp DEL &sl FUN /* */ &kp TAB   &kp N0 &trans
+            >;
+        };
+
+        function_layer {
+            label = "FUN";
+            bindings = <
+                &trans &trans &trans &trans &trans /* */ &kp C_MUTE &kp PSCRN     &kp PAUSE_BREAK &kp KP_NUMLOCK  &kp C_VOL_UP
+                &trans &trans &trans &trans &trans /* */ &bt BT_CLR &f1_          &f5_            &f9_            &media
+                &trans &trans &trans &trans &trans /* */ &bt_sel    &kp LG(LS(S)) &kp LG(L)       &kp LC(LS(ESC)) &kp C_VOL_DN
+                              &trans &trans &trans /* */ &trans     &output       &trans
+            >;
+        };
+
+        symbol_layer {
+            label = "SYM";
+            bindings = <
+                &kp BACKSLASH &kp SQT   &kp LBKT &kp RBKT &trans /* */ &trans  &trans &trans &trans &trans
+                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &trans /* */ &trans  &trans &trans &trans &trans
+                &kp PIPE      &kp DQT   &kp LBRC &kp RBRC &trans /* */ &trans  &trans &trans &trans &trans
+                                        &trans   &trans   &trans /* */ &sl NAV &trans &trans
+            >;
+        };
+
+        navigation_layer {
+            label = "NAV";
+            bindings = <
+                &kp INS &kp HOME &kp UP   &kp END   &trans    /* */ &trans &trans &trans &trans &trans
+                &kp TAB &kp LEFT &kp DOWN &kp RIGHT &kp PG_UP /* */ &trans &trans &trans &trans &trans
+                &kp DEL &trans   &trans   &trans    &kp PG_DN /* */ &trans &trans &trans &trans &trans
+                                 &trans   &trans    &trans    /* */ &trans &trans &trans
+            >;
+        };
+    };
+
+    /*                KEY POSITIONS
+
+      ╭────────────────────╮ ╭────────────────────╮
+      │  0   1   2   3   4 │ │  5   6   7   8   9 │
+      │ 10  11  12  13  14 │ │ 15  16  17  18  19 │
+      │ 20  21  22  23  24 │ │ 25  26  27  28  29 │
+      ╰───────╮ 30  31  32 │ │ 33  34  35 ╭───────╯
+              ╰────────────╯ ╰────────────╯        */
+
+    combos {
+        compatible = "zmk,combos";
+
+        // Combo Macros
+        #define COMBO(NAME, BINDINGS, KEYPOS, TIMEOUT, LAYERS) \
+            combo_##NAME { \
+                timeout-ms = <TIMEOUT>; \
+                bindings = <BINDINGS>; \
+                key-positions = <KEYPOS>; \
+                layers = <LAYERS>; \
+                slow-release; \
+            };
+
+        // For some reason, I can't pass -1 as a layer to the COMBO macro
+        #define COMBO_ALL(NAME, BINDINGS, KEYPOS, TIMEOUT) \
+            combo_##NAME { \
+                timeout-ms = <TIMEOUT>; \
+                bindings = <BINDINGS>; \
+                key-positions = <KEYPOS>; \
+                slow-release; \
+            };
+
+        #define DEFAULT_LAYERS BAS GA2 GA3 NUM FUN SYM NAV
+
+        COMBO(caps_word, &caps_word, 31 34, 50, DEFAULT_LAYERS)
+
+        COMBO(sk_lctrl , &sk LCTRL , 3 13, 50, DEFAULT_LAYERS)
+        COMBO(sk_lshift, &sk LSHIFT, 2 12, 50, DEFAULT_LAYERS)
+        COMBO(sk_lalt  , &sk LALT  , 1 11, 50, DEFAULT_LAYERS)
+        COMBO(lwin     , &kp LWIN  , 0 10, 50, BAS GA3 NUM FUN SYM NAV)
+
+        COMBO(sk_rctrl , &sk RCTRL , 6 16, 50, DEFAULT_LAYERS)
+        COMBO(sk_rshift, &sk RSHIFT, 7 17, 50, DEFAULT_LAYERS)
+        COMBO(sk_ralt  , &sk RALT  , 8 18, 50, DEFAULT_LAYERS)
+        COMBO(rwin     , &kp RWIN  , 9 19, 50, BAS GA3 NUM FUN SYM NAV)
+    };
+
     behaviors {
         bt_sel: tap_dance_bluetooth_select {
             compatible = "zmk,behavior-tap-dance"; label = "Bluetooth Select";
@@ -40,7 +154,7 @@
 
         n0_: tap_dance_n0_ {
             compatible = "zmk,behavior-tap-dance";
-            label = "0_9";
+            label = "TAP_DANCE_N0_N9";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&kp N0>, <&kp N1>, <&kp N2>, <&kp N3>, <&kp N4>,
@@ -49,7 +163,7 @@
 
         f1_: tap_dance_f1_ {
             compatible = "zmk,behavior-tap-dance";
-            label = "F1_F24";
+            label = "TAP_DANCE_F1_F24";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&kp F1>, <&kp F2>, <&kp F3>, <&kp F4>,
@@ -62,7 +176,7 @@
 
         f5_: tap_dance_f5_ {
             compatible = "zmk,behavior-tap-dance";
-            label = "F5_F24";
+            label = "TAP_DANCE_F5_F24";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&kp F5>, <&kp F6>, <&kp F7>, <&kp F8>,
@@ -74,7 +188,7 @@
 
         f9_: tap_dance_f9_ {
             compatible = "zmk,behavior-tap-dance";
-            label = "F9_F24";
+            label = "TAP_DANCE_F9_F24";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&kp F9>, <&kp F10>, <&kp F11>, <&kp F12>,
@@ -101,134 +215,16 @@
 
         esc_tab: mod_morph_esc_tab {
             compatible = "zmk,behavior-mod-morph";
-            label = "esc_tab";
+            label = "ESC_TAB";
             #binding-cells = <0>;
             bindings = <&kp ESC>, <&kp TAB>;
             mods = <(MOD_LALT|MOD_RALT)>;
             keep-mods = <(MOD_LALT|MOD_RALT)>;
         };
     };
-
-    combos {
-        compatible = "zmk,combos";
-
-        // Combo Macros
-        #define COMBO(NAME, BINDINGS, KEYPOS, TIMEOUT, LAYERS) \
-            combo_##NAME { \
-                timeout-ms = <TIMEOUT>; \
-                bindings = <BINDINGS>; \
-                key-positions = <KEYPOS>; \
-                layers = <LAYERS>; \
-                slow-release; \
-            };
-
-        // For some reason, I can't pass -1 as a layer to the COMBO macro
-        #define COMBO_ALL(NAME, BINDINGS, KEYPOS, TIMEOUT) \
-            combo_##NAME { \
-                timeout-ms = <TIMEOUT>; \
-                bindings = <BINDINGS>; \
-                key-positions = <KEYPOS>; \
-                slow-release; \
-            };
-
-        #define DEFAULT_LAYERS BAS LOW UPP GA2 GA3 FUN NAV
-
-        COMBO(caps_word, &caps_word, 31 34, 80, DEFAULT_LAYERS)
-
-        COMBO(sk_lctrl , &sk LCTRL , 31 13, 80, DEFAULT_LAYERS)
-        COMBO(sk_rctrl , &sk RCTRL , 34 16, 80, DEFAULT_LAYERS)
-        COMBO(sk_lalt  , &sk LALT  , 31 12, 80, DEFAULT_LAYERS)
-        COMBO(sk_ralt  , &sk RALT  , 34 17, 80, DEFAULT_LAYERS)
-        COMBO(lwin     , &kp LWIN  , 31 11, 80, DEFAULT_LAYERS)
-        COMBO(rwin     , &kp RWIN  , 34 18, 80, DEFAULT_LAYERS)
-        COMBO(sk_lshift, &sk LSHIFT, 31 10, 80, DEFAULT_LAYERS)
-        COMBO(sk_rshift, &sk RSHIFT, 34 19, 80, DEFAULT_LAYERS)
-    };
-
-    keymap {
-        compatible = "zmk,keymap";
-
-        base_layer {
-            label = "BAS";
-            bindings = <
-                &kp Q &kp W  &kp E    &kp R            &kp T   /* */ &kp Y   &kp U           &kp I     &kp O   &kp P
-                &kp A &kp S  &kp D    &kp F            &kp G   /* */ &kp H   &kp J           &kp K     &kp L   &kp SEMI
-                &kp Z &kp X  &kp C    &kp V            &kp B   /* */ &kp N   &kp M           &kp COMMA &kp DOT &kp SLASH
-                             &esc_tab &mt LSHIFT SPACE &sl LOW /* */ &sl UPP &mt RSHIFT BSPC &kp ENTER
-            >;
-        };
-
-        lower_layer {
-            label = "LOW";
-            bindings = <
-                &kp N1   &kp N2   &kp N3  &kp N4     &kp N5  /* */ &kp PLUS  &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
-                &trans   &trans   &trans  &sl FUN    &trans  /* */ &kp EQUAL &kp N4 &kp N5 &kp N6 &kp DOT
-                &trans   &trans   &trans  &trans     &trans  /* */ &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH
-                                  &to GA1 &sk LSHIFT &kp DEL /* */ &sl NAV   &trans &kp N0
-            >;
-        };
-
-        upper_layer {
-            label = "UPP";
-            bindings = <
-                &trans        &kp SQT   &kp LBKT &kp RBKT &trans  /* */ &trans  &trans     &trans &trans &trans
-                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &trans  /* */ &trans  &sl NAV    &trans &trans &trans
-                &kp BACKSLASH &kp DQT   &kp LBRC &kp RBRC &trans  /* */ &trans  &trans     &trans &trans &trans
-                                        &trans   &trans   &sl FUN /* */ &kp TAB &sk LSHIFT &trans
-            >;
-        };
-
-        game1_layer {
-            label = "GA1";
-            bindings = <
-                &kp Q     &kp W     &kp E    &kp R     &kp T   /* */ &kp Y  &kp U  &kp I     &kp O     &kp P
-                &kp A     &kp S     &kp D    &kp F     &kp G   /* */ &kp H  &kp J  &kp K     &kp L     &kp SEMI
-                &kp Z     &kp X     &kp C    &kp V     &kp B   /* */ &kp N  &kp M  &kp COMMA &kp DOT   &kp SLASH
-                                    &esc_tab &kp SPACE &sl GA2 /* */ &trans &trans &trans
-            >;
-        };
-
-        game2_layer {
-            label = "GA2";
-            bindings = <
-                &kp LCTL &kp N1 &trans  &kp N2 &kp TAB   /* */ &trans  &trans  &trans &trans &trans
-                &kp LSFT &trans &trans  &trans &kp N3    /* */ &sl NAV &trans  &trans &trans &trans
-                &kp LALT &kp N5 &sl GA3 &kp N4 &kp GRAVE /* */ &trans  &trans  &trans &trans &trans
-                                &to BAS &trans &esc_tab  /* */ &sl LOW &sl FUN &sl UPP
-            >;
-        };
-
-        game3_layer {
-            label = "GA3";
-            bindings = <
-                &trans &trans       &trans   &trans &trans  /* */ &trans &trans &trans &trans &trans
-                &trans &kp LS(F2)   &n0_     &kp F2 &to BAS /* */ &trans &trans &trans &trans &trans
-                &trans &kp LA(HOME) &kp LGUI &f1_   &trans  /* */ &trans &trans &trans &trans &trans
-                                    &trans   &trans &trans  /* */ &trans &trans &trans
-            >;
-        };
-
-        function_layer {
-            label = "Functions";
-            bindings = <
-                &trans &trans &trans &trans &trans  /* */ &kp C_MUTE &kp PSCRN     &kp PAUSE_BREAK &kp KP_NUMLOCK  &kp C_VOL_UP
-                &trans &trans &trans &trans &to GA1 /* */ &bt BT_CLR &f1_          &f5_            &f9_            &media
-                &trans &trans &trans &trans &trans  /* */ &bt_sel    &kp LG(LS(S)) &kp LG(L)       &kp LC(LS(ESC)) &kp C_VOL_DN
-                              &trans &trans &trans  /* */ &trans     &output       &trans
-            >;
-        };
-
-        nav_layer {
-            label = "Navigation";
-            bindings = <
-                &kp INS &kp HOME &kp UP   &kp END   &trans    /* */ &trans &trans &trans &trans &trans
-                &kp TAB &kp LEFT &kp DOWN &kp RIGHT &kp PG_UP /* */ &trans &trans &trans &trans &trans
-                &kp DEL &trans   &trans   &trans    &kp PG_DN /* */ &trans &trans &trans &trans &trans
-                                 &trans   &trans    &trans    /* */ &trans &trans &trans
-            >;
-        };
-    };
 };
+
+&caps_word { continue-list = <UNDERSCORE MINUS BSPC>; };
 
 // Empty keymap
 // &trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
