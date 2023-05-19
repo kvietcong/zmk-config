@@ -133,15 +133,15 @@
 
         COMBO(caps_word, &caps_word, 31 34, 50, DEFAULT_LAYERS)
 
-        COMBO(sk_lctrl , &sk LCTRL , 3 13, 50, DEFAULT_LAYERS)
-        COMBO(sk_lshift, &sk LSHIFT, 2 12, 50, DEFAULT_LAYERS)
-        COMBO(sk_lalt  , &sk LALT  , 1 11, 50, DEFAULT_LAYERS)
-        COMBO(lwin     , &kp LWIN  , 0 10, 50, BAS GA3 NUM FUN SYM NAV)
+        COMBO(sk_lctrl , &sk LCTRL , 13 23, 80, DEFAULT_LAYERS)
+        COMBO(sk_lshift, &sk LSHIFT, 12 22, 80, DEFAULT_LAYERS)
+        COMBO(sk_lalt  , &sk LALT  , 11 21, 80, DEFAULT_LAYERS)
+        COMBO(lwin     , &kp LWIN  , 10 20, 80, BAS GA3 NUM FUN SYM NAV)
 
-        COMBO(sk_rctrl , &sk RCTRL , 6 16, 50, DEFAULT_LAYERS)
-        COMBO(sk_rshift, &sk RSHIFT, 7 17, 50, DEFAULT_LAYERS)
-        COMBO(sk_ralt  , &sk RALT  , 8 18, 50, DEFAULT_LAYERS)
-        COMBO(rwin     , &kp RWIN  , 9 19, 50, BAS GA3 NUM FUN SYM NAV)
+        COMBO(sk_rctrl , &sk RCTRL , 16 26, 80, DEFAULT_LAYERS)
+        COMBO(sk_rshift, &sk RSHIFT, 17 27, 80, DEFAULT_LAYERS)
+        COMBO(sk_ralt  , &sk RALT  , 18 28, 80, DEFAULT_LAYERS)
+        COMBO(rwin     , &kp RWIN  , 19 29, 80, BAS GA3 NUM FUN SYM NAV)
     };
 
     behaviors {
