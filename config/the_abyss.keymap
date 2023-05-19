@@ -40,10 +40,10 @@
         game2_layer {
             label = "GA2";
             bindings = <
-                &kp LCTL &kp N1 &trans  &kp N2 &kp N0    /* */ &trans  &trans  &trans &trans &trans
-                &kp LSFT &trans &trans  &trans &kp N3    /* */ &sl NAV &trans  &trans &trans &trans
-                &kp LALT &kp N5 &kp TAB &kp N4 &kp GRAVE /* */ &trans  &trans  &trans &trans &trans
-                                &to BAS &trans &sl GA3   /* */ &sl NAV &sl FUN &sl SYM
+                &kp LCTL &kp N1 &trans  &kp N2 &kp N0    /* */ &trans &trans &trans &trans &trans
+                &kp LSFT &trans &trans  &trans &kp N3    /* */ &trans &trans &trans &trans &trans
+                &kp LALT &kp N5 &kp TAB &kp N4 &kp GRAVE /* */ &trans &trans &trans &trans &trans
+                                &trans  &trans &sl GA3   /* */ &trans &trans &trans
             >;
         };
 
@@ -53,27 +53,27 @@
                 &trans &trans       &trans   &trans &trans  /* */ &trans &trans &trans &trans &trans
                 &trans &kp LS(F2)   &n0_     &kp F2 &to BAS /* */ &trans &trans &trans &trans &trans
                 &trans &kp LA(HOME) &kp LGUI &f1_   &trans  /* */ &trans &trans &trans &trans &trans
-                                    &trans   &trans &trans  /* */ &trans &trans &trans
+                                    &to BAS  &trans &sl NUM /* */ &trans &trans &trans
             >;
         };
 
         number_layer {
             label = "NUM";
             bindings = <
-                &trans &trans &trans  &trans  &trans  /* */ &kp PLUS  &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
-                &kp N1 &kp N2 &kp N3  &kp N4  &kp N5  /* */ &kp EQUAL &kp N4 &kp N5 &kp N6 &kp DOT
-                &trans &trans &trans  &trans  &trans  /* */ &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH
-                              &to GA1 &kp DEL &sl FUN /* */ &kp TAB   &kp N0 &trans
+                &trans &trans &trans &trans  &trans  /* */ &kp PLUS  &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
+                &kp N1 &kp N2 &kp N3 &kp N4  &kp N5  /* */ &kp EQUAL &kp N4 &kp N5 &kp N6 &kp DOT
+                &trans &trans &trans &trans  &trans  /* */ &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH
+                              &trans &kp DEL &sl FUN /* */ &kp TAB   &kp N0 &trans
             >;
         };
 
         function_layer {
             label = "FUN";
             bindings = <
-                &trans &trans &trans &trans &trans /* */ &kp C_MUTE &kp PSCRN     &kp PAUSE_BREAK &kp KP_NUMLOCK  &kp C_VOL_UP
-                &trans &trans &trans &trans &trans /* */ &bt BT_CLR &f1_          &f5_            &f9_            &media
-                &trans &trans &trans &trans &trans /* */ &bt_sel    &kp LG(LS(S)) &kp LG(L)       &kp LC(LS(ESC)) &kp C_VOL_DN
-                              &trans &trans &trans /* */ &trans     &output       &trans
+                &trans &trans &trans  &trans &trans /* */ &kp C_MUTE &kp PSCRN     &kp PAUSE_BREAK &kp KP_NUMLOCK  &kp C_VOL_UP
+                &trans &trans &trans  &trans &trans /* */ &bt BT_CLR &f1_          &f5_            &f9_            &media
+                &trans &trans &trans  &trans &trans /* */ &bt_sel    &kp LG(LS(S)) &kp LG(L)       &kp LC(LS(ESC)) &kp C_VOL_DN
+                              &to GA1 &trans &trans /* */ &trans     &output       &trans
             >;
         };
 
@@ -224,6 +224,8 @@
     };
 };
 
+&sl { release-after-ms = <1200>; };
+&sk { release-after-ms = <1200>; };
 &caps_word { continue-list = <UNDERSCORE MINUS BSPC>; };
 
 // Empty keymap
