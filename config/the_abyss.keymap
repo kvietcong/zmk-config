@@ -90,10 +90,10 @@
         navigation_layer {
             label = "NAV";
             bindings = <
-                &kp INS &kp HOME &kp UP   &kp END   &trans    /* */ &trans &trans &trans &trans &trans
-                &kp TAB &kp LEFT &kp DOWN &kp RIGHT &kp PG_UP /* */ &trans &trans &trans &trans &trans
-                &kp DEL &trans   &trans   &trans    &kp PG_DN /* */ &trans &trans &trans &trans &trans
-                                 &trans   &trans    &trans    /* */ &trans &trans &trans
+                &kp INS &kp HOME &kp UP   &kp END   &trans    /* */ &trans   &trans   &trans &trans    &trans
+                &kp TAB &kp LEFT &kp DOWN &kp RIGHT &kp PG_UP /* */ &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans
+                &kp DEL &trans   &trans   &trans    &kp PG_DN /* */ &trans   &trans   &trans &trans    &trans
+                                 &trans   &trans    &trans    /* */ &trans   &trans   &trans
             >;
         };
     };
