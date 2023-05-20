@@ -110,7 +110,6 @@
     combos {
         compatible = "zmk,combos";
 
-        // Combo Macros
         #define COMBO(NAME, BINDINGS, KEYPOS, TIMEOUT, LAYERS) \
             combo_##NAME { \
                 timeout-ms = <TIMEOUT>; \
@@ -120,15 +119,7 @@
                 slow-release; \
             };
 
-        // For some reason, I can't pass -1 as a layer to the COMBO macro
-        #define COMBO_ALL(NAME, BINDINGS, KEYPOS, TIMEOUT) \
-            combo_##NAME { \
-                timeout-ms = <TIMEOUT>; \
-                bindings = <BINDINGS>; \
-                key-positions = <KEYPOS>; \
-                slow-release; \
-            };
-
+        #define ALL_LAYERS BAS GA1 GA2 GA3 NUM FUN SYM NAV
         #define DEFAULT_LAYERS BAS GA2 GA3 NUM FUN SYM NAV
 
         COMBO(caps_word, &caps_word, 31 34, 50, DEFAULT_LAYERS)
@@ -225,7 +216,7 @@
 };
 
 &sl { release-after-ms = <1200>; };
-&sk { release-after-ms = <1200>; };
+&sk { release-after-ms = <1200>; quick-release; };
 &caps_word { continue-list = <UNDERSCORE MINUS BSPC>; };
 
 // Empty keymap
