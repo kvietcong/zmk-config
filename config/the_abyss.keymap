@@ -20,10 +20,10 @@
         base_layer {
             label = "BAS";
             bindings = <
-                &kp Q &kp W  &kp E    &kp R     &kp T   /* */ &kp Y   &kp U    &kp I     &kp O   &kp P
-                &kp A &kp S  &kp D    &kp F     &kp G   /* */ &kp H   &kp J    &kp K     &kp L   &kp SEMI
-                &kp Z &kp X  &kp C    &kp V     &kp B   /* */ &kp N   &kp M    &kp COMMA &kp DOT &kp SLASH
-                             &esc_tab &kp SPACE &sl NUM /* */ &sl SYM &kp BSPC &kp ENTER
+                &kp Q &kp W  &kp E       &kp R     &kp T   /* */ &kp Y   &kp U    &kp I         &kp O   &kp P
+                &kp A &kp S  &kp D       &kp F     &kp G   /* */ &kp H   &kp J    &kp K         &kp L   &kp SEMI
+                &kp Z &kp X  &kp C       &kp V     &kp B   /* */ &kp N   &kp M    &kp COMMA     &kp DOT &kp SLASH
+                             &et_l FUN 0 &kp SPACE &sl NUM /* */ &sl SYM &kp BSPC &lt NAV ENTER
             >;
         };
 
@@ -60,10 +60,10 @@
         number_layer {
             label = "NUM";
             bindings = <
-                &trans &trans &trans &trans  &trans  /* */ &kp PLUS  &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
-                &kp N1 &kp N2 &kp N3 &kp N4  &kp N5  /* */ &kp EQUAL &kp N4 &kp N5 &kp N6 &kp DOT
-                &trans &trans &trans &trans  &trans  /* */ &kp MINUS &kp N1 &kp N2 &kp N3 &kp SLASH
-                              &noop  &kp DEL &sl FUN /* */ &sl FUN   &kp N0 &noop
+                &trans &trans &trans &trans  &trans  /* */ &kp KP_PLUS &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
+                &kp N1 &kp N2 &kp N3 &kp N4  &kp N5  /* */ &kp EQUAL   &kp N4 &kp N5 &kp N6 &kp DOT
+                &trans &trans &trans &trans  &trans  /* */ &kp MINUS   &kp N1 &kp N2 &kp N3 &kp SLASH
+                              &noop  &kp DEL &sl FUN /* */ &sl FUN     &kp N0 &noop
             >;
         };
 
@@ -119,20 +119,20 @@
                 slow-release; \
             };
 
-        #define ALL_LAYERS BAS GA1 GA2 GA3 NUM FUN SYM NAV
-        #define DEFAULT_LAYERS BAS GA2 GA3 NUM FUN SYM NAV
+        #define ALL BAS GA1 GA2 GA3 NUM FUN SYM NAV
+        #define DEFAULT BAS GA2 GA3 NUM FUN SYM NAV
 
-        COMBO(caps_word, &caps_word, 31 34, 50, DEFAULT_LAYERS)
+        COMBO(caps_word, &caps_word, 31 34, 50, DEFAULT)
 
-        COMBO(sk_lctrl , &sk LCTRL , 13 23, 80, DEFAULT_LAYERS)
-        COMBO(sk_lshift, &sk LSHIFT, 12 22, 80, DEFAULT_LAYERS)
-        COMBO(sk_lalt  , &sk LALT  , 11 21, 80, DEFAULT_LAYERS)
+        COMBO(sk_lctrl , &sk LCTRL , 13 23, 80, DEFAULT)
+        COMBO(sk_lshift, &sk LSHIFT, 12 22, 80, DEFAULT)
+        COMBO(sk_lalt  , &sk LALT  , 11 21, 80, DEFAULT)
         COMBO(lwin     , &kp LWIN  , 10 20, 80, BAS GA3 NUM FUN SYM NAV)
 
-        COMBO(sk_rctrl , &sk RCTRL , 16 26, 80, DEFAULT_LAYERS)
-        COMBO(sk_rshift, &sk RSHIFT, 17 27, 80, DEFAULT_LAYERS)
-        COMBO(sk_ralt  , &sk RALT  , 18 28, 80, DEFAULT_LAYERS)
-        COMBO(rwin     , &kp RWIN  , 19 29, 80, BAS GA3 NUM FUN SYM NAV)
+        COMBO(sk_rctrl , &sk LCTRL , 16 26, 80, DEFAULT)
+        COMBO(sk_rshift, &sk RSHIFT, 17 27, 80, DEFAULT)
+        COMBO(sk_ralt  , &sk RALT  , 18 28, 80, DEFAULT)
+        COMBO(rwin     , &kp LWIN  , 19 29, 80, BAS GA3 NUM FUN SYM NAV)
     };
 
     behaviors {
@@ -212,6 +212,15 @@
             mods = <(MOD_LALT|MOD_RALT)>;
             keep-mods = <(MOD_LALT|MOD_RALT)>;
         };
+
+        et_l: esc_tab_layer_x {
+            compatible = "zmk,behavior-hold-tap";
+            label = "ESC_TAB_LAYER";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <250>;
+            bindings = <&mo>, <&esc_tab>;
+        };
     };
 
     macros {
@@ -227,6 +236,7 @@
 
 &sl { release-after-ms = <1500>; };
 &sk { release-after-ms = <1500>; quick-release; };
+&lt { flavor = "balanced"; tapping-term-ms = <250>; };
 &caps_word { continue-list = <UNDERSCORE MINUS BSPC>; };
 
 // Empty keymap
