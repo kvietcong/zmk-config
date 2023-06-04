@@ -122,18 +122,18 @@
         #define ALL BAS GA1 GA2 GA3 NUM FUN SYM NAV
         #define DEFAULT BAS GA2 GA3 NUM FUN SYM NAV
 
-        COMBO(caps_word, &caps_word, 31 34, 50, DEFAULT)
-        COMBO(noop     , &noop     , 10 19, 80, DEFAULT)
+        COMBO(caps_word , &caps_word , 31 34 , 50  , DEFAULT)
+        COMBO(noop      , &noop      , 10 19 , 100 , DEFAULT)
 
-        COMBO(sk_lctrl , &sk LCTRL , 13 23, 50, DEFAULT)
-        COMBO(sk_lshift, &sk LSHIFT, 12 22, 50, DEFAULT)
-        COMBO(sk_lalt  , &sk LALT  , 11 21, 50, DEFAULT)
-        COMBO(lwin     , &kp LWIN  , 10 20, 50, BAS GA3 NUM FUN SYM NAV)
+        COMBO(sk_lctrl  , &sk LCTRL  , 13 23 , 50  , DEFAULT)
+        COMBO(sk_lshift , &sk LSHIFT , 12 22 , 50  , DEFAULT)
+        COMBO(sk_lalt   , &sk LALT   , 11 21 , 50  , DEFAULT)
+        COMBO(lwin      , &kp LWIN   , 10 20 , 50  , BAS GA3 NUM FUN SYM NAV)
 
-        COMBO(sk_rctrl , &sk LCTRL , 16 26, 50, DEFAULT)
-        COMBO(sk_rshift, &sk RSHIFT, 17 27, 50, DEFAULT)
-        COMBO(sk_ralt  , &sk RALT  , 18 28, 50, DEFAULT)
-        COMBO(rwin     , &kp LWIN  , 19 29, 50, BAS GA3 NUM FUN SYM NAV)
+        COMBO(sk_rctrl  , &sk LCTRL  , 16 26 , 50  , DEFAULT)
+        COMBO(sk_rshift , &sk RSHIFT , 17 27 , 50  , DEFAULT)
+        COMBO(sk_ralt   , &sk RALT   , 18 28 , 50  , DEFAULT)
+        COMBO(rwin      , &kp LWIN   , 19 29 , 50  , BAS GA3 NUM FUN SYM NAV)
     };
 
     behaviors {
