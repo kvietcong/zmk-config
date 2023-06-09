@@ -30,10 +30,10 @@
         game1_layer {
             label = "GA1";
             bindings = <
-                &kp Q     &kp W     &kp E  &kp R     &kp T   /* */ &kp Y  &kp U  &kp I     &kp O     &kp P
-                &kp A     &kp S     &kp D  &kp F     &kp G   /* */ &kp H  &kp J  &kp K     &kp L     &kp SEMI
-                &kp Z     &kp X     &kp C  &kp V     &kp B   /* */ &kp N  &kp M  &kp COMMA &kp DOT   &kp SLASH
-                                    &trans &kp SPACE &sl GA2 /* */ &trans &trans &trans
+                &kp Q     &kp W     &kp E       &kp R  &kp T   /* */ &kp Y  &kp U  &kp I     &kp O     &kp P
+                &kp A     &kp S     &kp D       &kp F  &kp G   /* */ &kp H  &kp J  &kp K     &kp L     &kp SEMI
+                &kp Z     &kp X     &kp C       &kp V  &kp B   /* */ &kp N  &kp M  &kp COMMA &kp DOT   &kp SLASH
+                                    &et_l GA3 0 &trans &sl GA2 /* */ &trans &trans &trans
             >;
         };
 
@@ -43,7 +43,7 @@
                 &kp LCTL &kp N1 &trans  &kp N2 &kp N0    /* */ &trans &trans &trans &trans &trans
                 &kp LSFT &trans &trans  &trans &kp N3    /* */ &trans &trans &trans &trans &trans
                 &kp LALT &kp N5 &kp TAB &kp N4 &kp GRAVE /* */ &trans &trans &trans &trans &trans
-                                &noop   &trans &sl GA3   /* */ &trans &trans &noop
+                                &trans  &trans &sl GA3   /* */ &trans &trans &trans
             >;
         };
 
@@ -53,17 +53,17 @@
                 &trans &trans       &trans   &trans &to BAS /* */ &trans &trans &trans &trans &trans
                 &trans &kp LS(F2)   &n0_     &kp F2 &trans  /* */ &trans &trans &trans &trans &trans
                 &trans &kp LA(HOME) &kp LGUI &f1_   &trans  /* */ &trans &trans &trans &trans &trans
-                                    &noop    &trans &sl NUM /* */ &trans &trans &noop
+                                    &trans   &trans &sl NUM /* */ &trans &trans &trans
             >;
         };
 
         number_layer {
             label = "NUM";
             bindings = <
-                &trans &trans &trans &trans  &trans  /* */ &kp KP_PLUS &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
-                &kp N1 &kp N2 &kp N3 &kp N4  &kp N5  /* */ &kp EQUAL   &kp N4 &kp N5 &kp N6 &kp DOT
-                &trans &trans &trans &trans  &trans  /* */ &kp MINUS   &kp N1 &kp N2 &kp N3 &kp SLASH
-                              &noop  &kp DEL &sl FUN /* */ &sl FUN     &kp N0 &noop
+                &kp N6 &kp N7 &kp N8 &kp N9  &trans  /* */ &kp KP_PLUS &kp N7 &kp N8    &kp N9 &kp KP_MULTIPLY
+                &kp N1 &kp N2 &kp N3 &kp N4  &kp N5  /* */ &kp EQUAL   &kp N4 &kp N5    &kp N6 &kp DOT
+                &trans &trans &trans &kp N0  &trans  /* */ &kp MINUS   &kp N1 &kp N2    &kp N3 &kp SLASH
+                              &trans &kp DEL &sl FUN /* */ &sl FUN     &kp N0 &kp COMMA
             >;
         };
 
@@ -73,17 +73,17 @@
                 &trans &trans &trans &trans &to GA1 /* */ &kp C_MUTE &kp PSCRN     &kp PAUSE_BREAK &kp KP_NUMLOCK  &kp C_VOL_UP
                 &trans &trans &trans &trans &trans  /* */ &bt BT_CLR &f1_          &f5_            &f9_            &media
                 &trans &trans &trans &trans &trans  /* */ &bt_sel    &kp LG(LS(S)) &kp LG(L)       &kp LC(LS(ESC)) &kp C_VOL_DN
-                              &noop  &trans &sl SYM /* */ &sl SYM    &output       &noop
+                              &trans &trans &sl SYM /* */ &sl SYM    &output       &trans
             >;
         };
 
         symbol_layer {
             label = "SYM";
             bindings = <
-                &kp BACKSLASH &kp SQT   &kp LBKT &kp RBKT &trans  /* */ &trans  &trans  &trans &trans &trans
-                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &kp TAB /* */ &trans  &trans  &trans &trans &trans
-                &kp PIPE      &kp DQT   &kp LBRC &kp RBRC &trans  /* */ &trans  &trans  &trans &trans &trans
-                                        &noop    &trans   &sl NAV /* */ &sl NAV &kp TAB &noop
+                &kp BACKSLASH &kp SQT   &kp LBKT &kp RBKT &trans  /* */ &trans  &trans &trans &trans &trans
+                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &trans  /* */ &trans  &trans &trans &trans &trans
+                &kp PIPE      &kp DQT   &kp LBRC &kp RBRC &trans  /* */ &trans  &trans &trans &trans &trans
+                                        &trans   &trans   &sl NAV /* */ &sl NAV &trans &trans
             >;
         };
 
@@ -93,7 +93,7 @@
                 &kp INS &kp HOME &kp UP   &kp END   &trans    /* */ &trans   &trans   &trans &trans    &trans
                 &kp TAB &kp LEFT &kp DOWN &kp RIGHT &kp PG_UP /* */ &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans
                 &kp DEL &trans   &trans   &trans    &kp PG_DN /* */ &trans   &trans   &trans &trans    &trans
-                                 &noop    &trans    &sl NUM   /* */ &sl NUM  &trans   &noop
+                                 &trans   &trans    &sl NUM   /* */ &sl NUM  &trans   &trans
             >;
         };
     };
@@ -119,21 +119,26 @@
                 slow-release; \
             };
 
-        #define ALL BAS GA1 GA2 GA3 NUM FUN SYM NAV
-        #define DEFAULT BAS GA2 GA3 NUM FUN SYM NAV
+        #define DEFAULT_TIME 50
+        #define ALL_LAYERS BAS GA1 GA2 GA3 NUM FUN SYM NAV
+        #define DEFAULT_LAYERS BAS GA2 GA3 NUM FUN SYM NAV
 
-        COMBO(caps_word , &caps_word , 31 34 , 50  , DEFAULT)
-        COMBO(noop      , &noop      , 10 19 , 100 , DEFAULT)
+        COMBO(l_bail    , &bail     , 30 31, DEFAULT_TIME, ALL_LAYERS)
+        COMBO(r_bail    , &bail     , 34 35, DEFAULT_TIME, ALL_LAYERS)
+        COMBO(tab       , &kp TAB   , 31 32, DEFAULT_TIME, DEFAULT_LAYERS)
+        COMBO(caps_word , &caps_word, 31 34, DEFAULT_TIME, DEFAULT_LAYERS)
 
-        COMBO(sk_lctrl  , &sk LCTRL  , 13 23 , 50  , DEFAULT)
-        COMBO(sk_lshift , &sk LSHIFT , 12 22 , 50  , DEFAULT)
-        COMBO(sk_lalt   , &sk LALT   , 11 21 , 50  , DEFAULT)
-        COMBO(lwin      , &kp LWIN   , 10 20 , 50  , BAS GA3 NUM FUN SYM NAV)
+        COMBO(num_space , &kp SPACE , 15 16, DEFAULT_TIME, NUM)
 
-        COMBO(sk_rctrl  , &sk LCTRL  , 16 26 , 50  , DEFAULT)
-        COMBO(sk_rshift , &sk RSHIFT , 17 27 , 50  , DEFAULT)
-        COMBO(sk_ralt   , &sk RALT   , 18 28 , 50  , DEFAULT)
-        COMBO(rwin      , &kp LWIN   , 19 29 , 50  , BAS GA3 NUM FUN SYM NAV)
+        COMBO(l_sk_ctrl , &sk LCTRL , 13 23, DEFAULT_TIME, DEFAULT_LAYERS)
+        COMBO(l_sk_shift, &sk LSHIFT, 12 22, DEFAULT_TIME, DEFAULT_LAYERS)
+        COMBO(l_sk_alt  , &sk LALT  , 11 21, DEFAULT_TIME, DEFAULT_LAYERS)
+        COMBO(l_win     , &kp LWIN  , 10 20, DEFAULT_TIME, BAS GA3 NUM FUN SYM NAV)
+
+        COMBO(r_sk_ctrl , &sk LCTRL , 16 26, DEFAULT_TIME, DEFAULT_LAYERS)
+        COMBO(r_sk_shift, &sk RSHIFT, 17 27, DEFAULT_TIME, DEFAULT_LAYERS)
+        COMBO(r_sk_alt  , &sk RALT  , 18 28, DEFAULT_TIME, DEFAULT_LAYERS)
+        COMBO(r_win     , &kp LWIN  , 19 29, DEFAULT_TIME, BAS GA3 NUM FUN SYM NAV)
     };
 
     behaviors {
@@ -226,11 +231,12 @@
 
     macros {
         // No way to cancel sticky keys so using F24 as a NOOP proxy
-        noop: macro_noop {
-            label = "MACRO_NOOP";
+        // Bailing out of any sticky keyboard state macro
+        bail: macro_bail {
+            label = "MACRO_BAIL";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp F24>;
+            bindings = <&macro_tap &kp F24 &to BAS>;
         };
     };
 };
