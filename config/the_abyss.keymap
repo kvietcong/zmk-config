@@ -60,10 +60,10 @@
         number_layer {
             label = "NUM";
             bindings = <
-                &kp N6 &kp N7 &kp N8 &kp N9  &trans  /* */ &kp KP_PLUS &kp N7 &kp N8    &kp N9 &kp KP_MULTIPLY
-                &kp N1 &kp N2 &kp N3 &kp N4  &kp N5  /* */ &kp EQUAL   &kp N4 &kp N5    &kp N6 &kp DOT
-                &trans &trans &trans &kp N0  &trans  /* */ &kp MINUS   &kp N1 &kp N2    &kp N3 &kp SLASH
-                              &trans &kp DEL &sl FUN /* */ &sl FUN     &kp N0 &kp COMMA
+                &kp N6 &kp N7 &kp N8 &kp N9  &trans  /* */ &kp KP_PLUS &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
+                &kp N1 &kp N2 &kp N3 &kp N4  &kp N5  /* */ &kp EQUAL   &kp N4 &kp N5 &kp N6 &kp DOT
+                &trans &trans &trans &kp N0  &trans  /* */ &kp MINUS   &kp N1 &kp N2 &kp N3 &kp SLASH
+                              &trans &kp DEL &sl FUN /* */ &sl FUN     &kp N0 &trans
             >;
         };
 
@@ -120,15 +120,18 @@
             };
 
         #define DEFAULT_TIME 50
+        #define LONG_TIME 100
         #define ALL_LAYERS BAS GA1 GA2 GA3 NUM FUN SYM NAV
         #define DEFAULT_LAYERS BAS GA2 GA3 NUM FUN SYM NAV
 
-        COMBO(l_bail    , &bail     , 30 31, DEFAULT_TIME, ALL_LAYERS)
-        COMBO(r_bail    , &bail     , 34 35, DEFAULT_TIME, ALL_LAYERS)
-        COMBO(tab       , &kp TAB   , 31 32, DEFAULT_TIME, DEFAULT_LAYERS)
+        COMBO(l_bail    , &bail     , 30 31, DEFAULT_TIME, DEFAULT_LAYERS)
+        COMBO(r_bail    , &bail     , 34 35, DEFAULT_TIME, DEFAULT_LAYERS)
+        COMBO(tab       , &kp TAB   , 31 32, LONG_TIME   , DEFAULT_LAYERS)
         COMBO(caps_word , &caps_word, 31 34, DEFAULT_TIME, DEFAULT_LAYERS)
 
-        COMBO(num_space , &kp SPACE , 15 16, DEFAULT_TIME, NUM)
+        COMBO(num_bspc  , &kp BSPC  , 15 16, DEFAULT_TIME, NUM)
+        COMBO(num_comma , &kp COMMA , 6  16, DEFAULT_TIME, NUM)
+        COMBO(num_space , &kp SPACE , 7  17, DEFAULT_TIME, NUM)
 
         COMBO(l_sk_ctrl , &sk LCTRL , 13 23, DEFAULT_TIME, DEFAULT_LAYERS)
         COMBO(l_sk_shift, &sk LSHIFT, 12 22, DEFAULT_TIME, DEFAULT_LAYERS)
