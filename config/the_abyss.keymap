@@ -141,7 +141,7 @@
         COMBO(r_sk_ctrl , &sk LCTRL , 16 26, DEFAULT_TIME, DEFAULT_LAYERS)
         COMBO(r_sk_shift, &sk RSHIFT, 17 27, DEFAULT_TIME, DEFAULT_LAYERS)
         COMBO(r_sk_alt  , &sk RALT  , 18 28, DEFAULT_TIME, DEFAULT_LAYERS)
-        COMBO(r_win     , &kp LWIN  , 19 29, DEFAULT_TIME, BAS GA3 NUM FUN SYM NAV)
+        COMBO(r_win     , &kp LWIN  , 19 29, DEFAULT_TIME, DEFAULT_LAYERS)
     };
 
     behaviors {
@@ -244,9 +244,9 @@
     };
 };
 
-&sl { release-after-ms = <1500>; };
-&sk { release-after-ms = <1500>; quick-release; };
-&lt { flavor = "balanced"; tapping-term-ms = <250>; };
+&sl { release-after-ms = <800>; };
+&sk { release-after-ms = <800>; quick-release; };
+&lt { flavor = "balanced"; tapping-term-ms = <222>; };
 &caps_word { continue-list = <UNDERSCORE MINUS BSPC>; };
 
 // Empty keymap
