@@ -8,10 +8,15 @@
 #define GA1 1
 #define GA2 2
 #define GA3 3
-#define NUM 4
+#define _NUM 4
 #define FUN 5
 #define SYM 6
-#define NAV 7
+#define _NAV 7
+
+#define NUM 8
+#define NUM_LCK 9
+#define NAV 10
+#define NAV_LCK 11
 
 / {
     keymap {
@@ -60,10 +65,10 @@
         number_layer {
             label = "NUM";
             bindings = <
-                &kp N6 &kp N7 &kp N8 &kp N9  &trans  /* */ &kp KP_PLUS &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
-                &kp N1 &kp N2 &kp N3 &kp N4  &kp N5  /* */ &kp EQUAL   &kp N4 &kp N5 &kp N6 &kp DOT
-                &trans &trans &trans &kp N0  &trans  /* */ &kp MINUS   &kp N1 &kp N2 &kp N3 &kp SLASH
-                              &trans &kp DEL &sl FUN /* */ &sl FUN     &kp N0 &trans
+                &kp N6 &kp N7 &kp N8       &kp N9  &trans  /* */ &kp KP_PLUS &kp N7 &kp N8       &kp N9 &kp KP_MULTIPLY
+                &kp N1 &kp N2 &kp N3       &kp N4  &kp N5  /* */ &kp EQUAL   &kp N4 &kp N5       &kp N6 &kp DOT
+                &trans &trans &trans       &kp N0  &trans  /* */ &kp MINUS   &kp N1 &kp N2       &kp N3 &kp SLASH
+                              &tog NUM_LCK &kp DEL &sl FUN /* */ &sl FUN     &kp N0 &tog NUM_LCK
             >;
         };
 
@@ -90,12 +95,29 @@
         navigation_layer {
             label = "NAV";
             bindings = <
-                &kp INS &kp HOME &kp UP   &kp END   &trans    /* */ &trans   &trans   &trans &trans    &trans
-                &kp TAB &kp LEFT &kp DOWN &kp RIGHT &kp PG_UP /* */ &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans
-                &kp DEL &trans   &trans   &trans    &kp PG_DN /* */ &trans   &trans   &trans &trans    &trans
-                                 &trans   &trans    &sl NUM   /* */ &sl NUM  &trans   &trans
+                &kp INS &kp HOME &kp UP       &kp END   &trans    /* */ &trans   &trans   &trans       &trans    &trans
+                &kp TAB &kp LEFT &kp DOWN     &kp RIGHT &kp PG_UP /* */ &kp LEFT &kp DOWN &kp UP       &kp RIGHT &trans
+                &kp DEL &trans   &trans       &trans    &kp PG_DN /* */ &trans   &trans   &trans       &trans    &trans
+                                 &tog NAV_LCK &trans    &sl NUM   /* */ &sl NUM  &trans   &tog NAV_LCK
             >;
         };
+
+        // Entry points for layers with layer locking
+        num { label = "NUM"; bindings = <&trans>; };
+        num_lck { label = "<NUM>"; bindings = <&trans>; };
+
+        nav { label = "NAV"; bindings = <&trans>; };
+        nav_lck { label = "<NAV>"; bindings = <&trans>; };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        num { if-layers = <NUM>; then-layer = <_NUM>; };
+        num_lck { if-layers = <NUM_LCK>; then-layer = <_NUM>; };
+
+        nav { if-layers = <NAV>; then-layer = <_NAV>; };
+        nav_lck { if-layers = <NAV_LCK>; then-layer = <_NAV>; };
     };
 
     /*                KEY POSITIONS
@@ -121,8 +143,9 @@
 
         #define DEFAULT_TIME 50
         #define LONG_TIME 100
-        #define ALL_LAYERS BAS GA1 GA2 GA3 NUM FUN SYM NAV
-        #define DEFAULT_LAYERS BAS GA2 GA3 NUM FUN SYM NAV
+        #define LWIN_LAYERS BAS GA3 _NUM FUN SYM _NAV NUM NUM_LCK NAV NAV_LCK
+        #define DEFAULT_LAYERS BAS GA2 GA3 _NUM FUN SYM _NAV NUM NUM_LCK NAV NAV_LCK
+        #define ALL_LAYERS BAS GA1 GA2 GA3 _NUM FUN SYM _NAV NUM NUM_LCK NAV NAV_LCK
 
         COMBO(l_bail    , &bail     , 30 31, DEFAULT_TIME, DEFAULT_LAYERS)
         COMBO(r_bail    , &bail     , 34 35, DEFAULT_TIME, DEFAULT_LAYERS)
@@ -136,7 +159,7 @@
         COMBO(l_sk_ctrl , &sk LCTRL , 13 23, DEFAULT_TIME, DEFAULT_LAYERS)
         COMBO(l_sk_shift, &sk LSHIFT, 12 22, DEFAULT_TIME, DEFAULT_LAYERS)
         COMBO(l_sk_alt  , &sk LALT  , 11 21, DEFAULT_TIME, DEFAULT_LAYERS)
-        COMBO(l_win     , &kp LWIN  , 10 20, DEFAULT_TIME, BAS GA3 NUM FUN SYM NAV)
+        COMBO(l_win     , &kp LWIN  , 10 20, DEFAULT_TIME, LWIN_LAYERS)
 
         COMBO(r_sk_ctrl , &sk LCTRL , 16 26, DEFAULT_TIME, DEFAULT_LAYERS)
         COMBO(r_sk_shift, &sk RSHIFT, 17 27, DEFAULT_TIME, DEFAULT_LAYERS)
