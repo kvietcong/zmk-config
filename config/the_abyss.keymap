@@ -85,10 +85,10 @@
         symbol_layer {
             label = "SYM";
             bindings = <
-                &kp BACKSLASH &kp SQT   &kp LBKT &kp RBKT &trans  /* */ &trans  &trans &trans &trans &trans
-                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &trans  /* */ &trans  &trans &trans &trans &trans
-                &kp PIPE      &kp DQT   &kp LBRC &kp RBRC &trans  /* */ &trans  &trans &trans &trans &trans
-                                        &trans   &trans   &sl NAV /* */ &sl NAV &trans &trans
+                &kp BACKSLASH &kp SQT   &kp LBKT &kp RBKT &trans    /* */ &trans  &trans  &trans &trans &trans
+                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &kp TILDE /* */ &trans  &trans  &trans &trans &trans
+                &kp PIPE      &kp DQT   &kp LBRC &kp RBRC &trans    /* */ &trans  &trans  &trans &trans &trans
+                                        &trans   &trans   &sl NAV   /* */ &sl NAV &kp TAB &trans
             >;
         };
 
