@@ -149,17 +149,17 @@
 
         COMBO(l_bail    , &bail     , 30 31, DEFAULT_TIME, DEFAULT_LAYERS)
         COMBO(r_bail    , &bail     , 34 35, DEFAULT_TIME, DEFAULT_LAYERS)
-        COMBO(tab       , &kp TAB   , 31 32, LONG_TIME   , DEFAULT_LAYERS)
+        COMBO(tab       , &kp TAB   , 13 31, DEFAULT_TIME, DEFAULT_LAYERS)
         COMBO(caps_word , &caps_word, 31 34, DEFAULT_TIME, DEFAULT_LAYERS)
 
-        COMBO(num_bspc  , &kp BSPC  , 15 16, DEFAULT_TIME, NUM)
-        COMBO(num_comma , &kp COMMA , 6  16, DEFAULT_TIME, NUM)
-        COMBO(num_space , &kp SPACE , 7  17, DEFAULT_TIME, NUM)
+        COMBO(num_bspc  , &kp BSPC  , 15 16, DEFAULT_TIME, NUM           )
+        COMBO(num_comma , &kp COMMA , 6  16, DEFAULT_TIME, NUM           )
+        COMBO(num_space , &kp SPACE , 7  17, DEFAULT_TIME, NUM           )
 
         COMBO(l_sk_ctrl , &sk LCTRL , 13 23, DEFAULT_TIME, DEFAULT_LAYERS)
         COMBO(l_sk_shift, &sk LSHIFT, 12 22, DEFAULT_TIME, DEFAULT_LAYERS)
         COMBO(l_sk_alt  , &sk LALT  , 11 21, DEFAULT_TIME, DEFAULT_LAYERS)
-        COMBO(l_win     , &kp LWIN  , 10 20, DEFAULT_TIME, LWIN_LAYERS)
+        COMBO(l_win     , &kp LWIN  , 10 20, DEFAULT_TIME, LWIN_LAYERS   )
 
         COMBO(r_sk_ctrl , &sk LCTRL , 16 26, DEFAULT_TIME, DEFAULT_LAYERS)
         COMBO(r_sk_shift, &sk RSHIFT, 17 27, DEFAULT_TIME, DEFAULT_LAYERS)
@@ -233,7 +233,7 @@
             label = "TAP_DANCE_OUTPUT";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&out OUT_USB>, <&kp OUT_BLE>;
+            bindings = <&out OUT_USB>, <&out OUT_BLE>;
         };
 
         esc_tab: mod_morph_esc_tab {
