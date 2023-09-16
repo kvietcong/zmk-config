@@ -268,8 +268,8 @@
     };
 };
 
-&sl { release-after-ms = <800>; };
-&sk { release-after-ms = <800>; quick-release; };
+&sl { release-after-ms = <800>; no-sticky-after-hold-ms = <400>; };
+&sk { release-after-ms = <800>; no-sticky-after-hold-ms = <400>; quick-release; };
 &lt { flavor = "balanced"; tapping-term-ms = <222>; };
 &caps_word { continue-list = <UNDERSCORE MINUS BSPC>; };
 
