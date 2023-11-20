@@ -1,5 +1,7 @@
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  build:
+  keymap_build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      archive_name: the_abyss_keymap
