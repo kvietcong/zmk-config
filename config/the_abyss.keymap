@@ -25,10 +25,10 @@
         base_layer {
             label = "BAS";
             bindings = <
-                &kp Q &kp W  &kp E       &kp R     &kp T   /* */ &kp Y   &kp U    &kp I         &kp O   &kp P
-                &kp A &kp S  &kp D       &kp F     &kp G   /* */ &kp H   &kp J    &kp K         &kp L   &kp SEMI
-                &kp Z &kp X  &kp C       &kp V     &kp B   /* */ &kp N   &kp M    &kp COMMA     &kp DOT &kp SLASH
-                             &et_l FUN 0 &kp SPACE &sl NUM /* */ &sl SYM &kp BSPC &lt NAV ENTER
+                &kp Q      &kp W      &kp E       &kp R      &kp T   /* */ &kp Y   &kp U      &kp I         &kp O      &kp P
+                &hm LWIN A &hm LALT S &hm LSHFT D &hm LCTL F &kp G   /* */ &kp H   &hm RCTL J &hm RSHFT K   &hm RALT L &hm RWIN SEMI
+                &kp Z      &kp X      &kp C       &kp V      &kp B   /* */ &kp N   &kp M      &kp COMMA     &kp DOT    &kp SLASH
+                                      &et_l FUN 0 &kp SPACE  &sl NUM /* */ &sl SYM &kp BSPC   &lt NAV ENTER
             >;
         };
 
@@ -253,6 +253,17 @@
             flavor = "balanced";
             tapping-term-ms = <250>;
             bindings = <&mo>, <&esc_tab>;
+        };
+
+        hm: homerow_mod {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MOD";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
+            bindings = <&kp>, <&kp>;
         };
     };
 
