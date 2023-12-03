@@ -25,10 +25,10 @@
         base_layer {
             label = "BAS";
             bindings = <
-                &kp Q      &kp W      &kp E       &kp R      &kp T   /* */ &kp Y   &kp U      &kp I         &kp O      &kp P
-                &hm LWIN A &hm LALT S &hm LSHFT D &hm LCTL F &kp G   /* */ &kp H   &hm RCTL J &hm RSHFT K   &hm RALT L &hm RWIN SEMI
-                &kp Z      &kp X      &kp C       &kp V      &kp B   /* */ &kp N   &kp M      &kp COMMA     &kp DOT    &kp SLASH
-                                      &et_l FUN 0 &kp SPACE  &sl NUM /* */ &sl SYM &kp BSPC   &lt NAV ENTER
+                &kp Q &kp W &kp E       &kp R      &kp T   /* */ &kp Y   &kp U      &kp I     &kp O   &kp P
+                &hm_A &hm_S &hm_D       &hm_F      &kp G   /* */ &kp H   &hm_J      &hm_K     &hm_L   &hm_SEMI
+                &kp Z &kp X &kp C       &kp V      &kp B   /* */ &kp N   &kp M      &kp COMMA &kp DOT &kp SLASH
+                            &et_l FUN 0 &kp SPACE  &sl NUM /* */ &sl SYM &kp BSPC   &lt NAV ENTER
             >;
         };
 
@@ -255,9 +255,9 @@
             bindings = <&mo>, <&esc_tab>;
         };
 
-        hm: homerow_mod {
+        _hm: _homerow_mod {
             compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MOD";
+            label = "_HOMEROW_MOD";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;
@@ -265,6 +265,25 @@
             require-prior-idle-ms = <125>;
             bindings = <&kp>, <&kp>;
         };
+
+        #define HOMEROW_MOD(MOD, KEY) \
+            hm_##KEY: hm_##KEY { \
+                compatible = "zmk,behavior-tap-dance"; \
+                label = #MOD; \
+                #binding-cells = <0>; \
+                tapping-term-ms = <200>; \
+                bindings = <&kp KEY>, <&_hm MOD KEY>; \
+            };
+
+        HOMEROW_MOD(LWIN,  A)
+        HOMEROW_MOD(LALT,  S)
+        HOMEROW_MOD(LSHFT, D)
+        HOMEROW_MOD(LCTL,  F)
+
+        HOMEROW_MOD(RWIN,  SEMI)
+        HOMEROW_MOD(RALT,  L)
+        HOMEROW_MOD(RSHFT, K)
+        HOMEROW_MOD(RCTL,  J)
     };
 
     macros {
