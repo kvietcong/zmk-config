@@ -46,7 +46,7 @@
                 &sk LCTL &kp N1 &trans    &kp N2 &kp N0  /* */ &trans &trans &trans &trans &trans
                 &sk LSFT &trans &trans    &trans &kp N3  /* */ &trans &trans &trans &trans &trans
                 &sk LALT &kp N5 &kp GRAVE &kp N4 &kp TAB /* */ &trans &trans &trans &trans &trans
-                                &noop     &trans &sl GA3 /* */ &trans &trans &trans
+                                &tg_game  &trans &sl GA3 /* */ &trans &trans &trans
             >;
         };
 
@@ -63,10 +63,10 @@
         number_layer {
             label = "NUM";
             bindings = <
-                &kp N6 &kp N7 &kp N8 &kp N9  &kp N0  /* */ &kp KP_PLUS &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
-                &kp N1 &kp N2 &kp N3 &kp N4  &kp N5  /* */ &kp EQUAL   &kp N4 &kp N5 &kp N6 &kp DOT
-                &trans &trans &trans &kp N0  &trans  /* */ &kp MINUS   &kp N1 &kp N2 &kp N3 &kp SLASH
-                              &trans &kp DEL &sl FUN /* */ &sl SYM     &kp N0 &trans
+                &kp N6 &kp N7 &kp N8   &kp N9  &kp N0  /* */ &kp KP_PLUS &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
+                &kp N1 &kp N2 &kp N3   &kp N4  &kp N5  /* */ &kp EQUAL   &kp N4 &kp N5 &kp N6 &kp DOT
+                &trans &trans &trans   &kp N0  &trans  /* */ &kp MINUS   &kp N1 &kp N2 &kp N3 &kp SLASH
+                              &tg_game &kp DEL &sl FUN /* */ &sl SYM     &kp N0 &trans
             >;
         };
 
@@ -148,8 +148,6 @@
         COMBO(num_bspc  , &kp BSPC  , 6  16, DEFAULT_TIME, NUM           )
         COMBO(num_comma , &kp COMMA , 7  17, DEFAULT_TIME, NUM           )
         COMBO(num_space , &kp SPACE , 8  18, DEFAULT_TIME, NUM           )
-
-        COMBO(tg_game   , &tg_game  , 12 13, DEFAULT_TIME, NONBASE_LAYERS)
     };
 
     behaviors {
