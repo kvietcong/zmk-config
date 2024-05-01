@@ -33,20 +33,20 @@
         game1_layer {
             label = "GA1";
             bindings = <
-                &kp Q     &kp W     &kp E       &kp R  &kp T   /* */ &kp Y  &kp U  &kp I     &kp O     &kp P
-                &kp A     &kp S     &kp D       &kp F  &kp G   /* */ &kp H  &kp J  &kp K     &kp L     &kp SEMI
-                &kp Z     &kp X     &kp C       &kp V  &kp B   /* */ &kp N  &kp M  &kp COMMA &kp DOT   &kp SLASH
-                                    &et_l GA3 0 &trans &sl GA2 /* */ &trans &trans &trans
+                &kp LCTL &kp Q  &kp W       &kp E  &kp R   /* */ &kp Y  &kp U  &kp I     &kp O     &kp P
+                &kp LSFT &kp A  &kp S       &kp D  &kp F   /* */ &kp H  &kp J  &kp K     &kp L     &kp SEMI
+                &kp LALT &kp Z  &kp X       &kp C  &kp V   /* */ &kp N  &kp M  &kp COMMA &kp DOT   &kp SLASH
+                                &et_l GA3 0 &trans &sl GA2 /* */ &trans &trans &trans
             >;
         };
 
         game2_layer {
             label = "GA2";
             bindings = <
-                &sk LCTL &kp N1 &trans    &kp N2 &kp N0  /* */ &trans &trans &trans &trans &trans
-                &sk LSFT &trans &trans    &trans &kp N3  /* */ &trans &trans &trans &trans &trans
-                &sk LALT &kp N5 &kp GRAVE &kp N4 &kp TAB /* */ &trans &trans &trans &trans &trans
-                                &tg_game  &trans &sl GA3 /* */ &trans &trans &trans
+                &kp T &kp N1 &trans    &kp N2 &kp N0  /* */ &trans &trans &trans &trans &trans
+                &kp G &trans &trans    &trans &kp N3  /* */ &trans &trans &trans &trans &trans
+                &kp B &kp N5 &kp GRAVE &kp N4 &kp TAB /* */ &trans &trans &trans &trans &trans
+                             &tg_game  &trans &sl GA3 /* */ &trans &trans &trans
             >;
         };
 
