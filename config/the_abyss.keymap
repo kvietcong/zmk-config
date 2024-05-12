@@ -43,9 +43,9 @@
         game2_layer {
             label = "GA2";
             bindings = <
-                &sk LCTL &kp N1 &trans    &kp N2 &kp N0  /* */ &trans &trans &trans &trans &trans
-                &sk LSFT &trans &trans    &trans &kp N3  /* */ &trans &trans &trans &trans &trans
-                &sk LALT &kp N5 &kp GRAVE &kp N4 &kp TAB /* */ &trans &trans &trans &trans &trans
+                &kp LCTL &kp N1 &trans    &kp N2 &kp N0  /* */ &trans &trans &trans &trans &trans
+                &kp LSFT &trans &trans    &trans &kp N3  /* */ &trans &trans &trans &trans &trans
+                &kp LALT &kp N5 &kp GRAVE &kp N4 &kp TAB /* */ &trans &trans &trans &trans &trans
                                 &tg_game  &trans &sl GA3 /* */ &trans &trans &trans
             >;
         };
