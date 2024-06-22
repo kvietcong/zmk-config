@@ -53,10 +53,10 @@
         game3_layer {
             label = "GA3";
             bindings = <
-                &trans &trans       &trans   &trans &trans  /* */ &trans &kp PSCRN  &trans &trans &trans
-                &trans &kp LS(F2)   &trans   &kp F2 &trans  /* */ &trans &f1_       &f5_   &f9_   &trans
-                &trans &kp LA(HOME) &kp LGUI &trans &trans  /* */ &trans &kp SCNSHT &trans &trans &trans
-                                    &trans   &trans &sl NUM /* */ &trans &trans     &trans
+                &trans &trans       &trans   &trans      &trans  /* */ &trans &kp PSCRN  &trans &trans &trans
+                &trans &kp LS(F2)   &trans   &kp F2      &trans  /* */ &trans &f1_       &f5_   &f9_   &trans
+                &trans &kp LA(HOME) &kp LGUI &kp LA(END) &trans  /* */ &trans &kp SCNSHT &trans &trans &trans
+                                    &trans   &trans      &sl NUM /* */ &trans &trans     &trans
             >;
         };
 
