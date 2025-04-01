@@ -26,7 +26,7 @@
                 &kp Q &kp W  &kp E       &kp R     &kp T   /* */ &kp Y   &kp U    &kp I         &kp O   &kp P
                 &kp A &kp S  &kp D       &kp F     &kp G   /* */ &kp H   &kp J    &kp K         &kp L   &kp SEMI
                 &kp Z &kp X  &kp C       &kp V     &kp B   /* */ &kp N   &kp M    &kp COMMA     &kp DOT &kp SLASH
-                             &et_l FUN 0 &kp SPACE &sl NUM /* */ &sl SYM &kp BSPC &lt NAV ENTER
+                             &lt FUN ESC &kp SPACE &sl NUM /* */ &sl SYM &kp BSPC &lt NAV ENTER
             >;
         };
 
@@ -36,7 +36,7 @@
                 &kp Q     &kp W     &kp E       &kp R  &kp T   /* */ &kp Y  &kp U  &kp I     &kp O     &kp P
                 &kp A     &kp S     &kp D       &kp F  &kp G   /* */ &kp H  &kp J  &kp K     &kp L     &kp SEMI
                 &kp Z     &kp X     &kp C       &kp V  &kp B   /* */ &kp N  &kp M  &kp COMMA &kp DOT   &kp SLASH
-                                    &et_l GA3 0 &trans &sl GA2 /* */ &trans &trans &trans
+                                    &lt GA3 ESC &trans &sl GA2 /* */ &trans &trans &trans
             >;
         };
 
@@ -53,20 +53,20 @@
         game3_layer {
             label = "GA3";
             bindings = <
-                &trans &trans       &trans   &trans      &trans  /* */ &trans &kp PSCRN  &trans &trans &trans
-                &trans &kp LS(F2)   &trans   &kp F2      &trans  /* */ &trans &f1_       &f5_   &f9_   &trans
-                &trans &kp LA(HOME) &kp LGUI &kp LA(END) &trans  /* */ &trans &kp SCNSHT &trans &trans &trans
-                                    &trans   &trans      &sl NUM /* */ &trans &trans     &trans
+                &trans  &trans       &trans   &trans      &trans  /* */ &trans  &kp PSCRN  &trans &trans &trans
+                &trans  &kp LS(F2)   &trans   &kp F2      &trans  /* */ &trans  &f1_       &f5_   &f9_   &trans
+                &trans  &kp LA(HOME) &kp LGUI &kp LA(END) &trans  /* */ &trans  &kp SCNSHT &trans &trans &trans
+                                     &trans   &trans      &sl NUM /* */ &sl NUM &trans     &trans
             >;
         };
 
         number_layer {
             label = "NUM";
             bindings = <
-                &kp N6 &kp N7 &kp N8   &kp N9  &kp N0  /* */ &kp KP_PLUS &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
-                &kp N1 &kp N2 &kp N3   &kp N4  &kp N5  /* */ &kp EQUAL   &kp N4 &kp N5 &kp N6 &kp DOT
-                &trans &trans &trans   &kp N0  &trans  /* */ &kp MINUS   &kp N1 &kp N2 &kp N3 &kp SLASH
-                              &tg_game &kp DEL &sl FUN /* */ &sl SYM     &kp N0 &trans
+                &trans   &trans   &trans   &trans   &trans  /* */ &kp KP_PLUS &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
+                &kp LWIN &sk LALT &sk LSFT &sk LCTL &trans  /* */ &kp EQUAL   &kp N4 &kp N5 &kp N6 &kp DOT
+                &trans   &trans   &trans   &trans   &trans  /* */ &kp MINUS   &kp N1 &kp N2 &kp N3 &kp SLASH
+                                  &tg_game &kp DEL  &sl FUN /* */ &sl FUN     &kp N0 &trans
             >;
         };
 
@@ -83,10 +83,10 @@
         symbol_layer {
             label = "SYM";
             bindings = <
-                &kp BACKSLASH &kp SQT   &kp LBKT &kp RBKT &trans    /* */ &trans  &trans  &trans &trans &trans
-                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &kp TILDE /* */ &trans  &trans  &trans &trans &trans
-                &kp PIPE      &kp DQT   &kp LBRC &kp RBRC &trans    /* */ &trans  &trans  &trans &trans &trans
-                                        &trans   &trans   &sl NUM   /* */ &sl NAV &kp TAB &trans
+                &kp BACKSLASH &kp SQT   &kp LBKT &kp RBKT &trans    /* */ &trans  &trans   &trans   &trans   &trans
+                &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &kp TILDE /* */ &trans  &sk LCTL &sk RSFT &sk LALT &kp LWIN
+                &kp PIPE      &kp DQT   &kp LBRC &kp RBRC &trans    /* */ &trans  &trans   &trans   &trans   &trans
+                                        &trans   &trans   &sl NAV   /* */ &sl NAV &kp TAB  &trans
             >;
         };
 
@@ -234,24 +234,6 @@
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&out OUT_USB>, <&out OUT_BLE>;
-        };
-
-        esc_tab: mod_morph_esc_tab {
-            compatible = "zmk,behavior-mod-morph";
-            label = "ESC_TAB";
-            #binding-cells = <0>;
-            bindings = <&kp ESC>, <&kp TAB>;
-            mods = <(MOD_LALT|MOD_RALT)>;
-            keep-mods = <(MOD_LALT|MOD_RALT)>;
-        };
-
-        et_l: esc_tab_layer_x {
-            compatible = "zmk,behavior-hold-tap";
-            label = "ESC_TAB_LAYER";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <250>;
-            bindings = <&mo>, <&esc_tab>;
         };
     };
 
