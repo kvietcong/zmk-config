@@ -2,18 +2,21 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: petejohanson
-      url-base: https://github.com/petejohanson
     - name: nguyendown
       url-base: https://github.com/nguyendown
+    - name: mctechnology17
+      url-base: https://github.com/mctechnology17
   projects:
-    # - name: zmk
-    #   remote: zmkfirmware
-    #   revision: main
-    #   import: app/west.yml
     - name: zmk
-      remote: nguyendown
-      revision: behaviors/sticky-key-deactivate-after-hold
+      remote: zmkfirmware
+      revision: main
       import: app/west.yml
+    - name: zmk-nice-oled
+      remote: mctechnology17
+      revision: main
+    # - name: zmk
+    #   remote: nguyendown
+    #   revision: behaviors/sticky-key-deactivate-after-hold
+    #   import: app/west.yml
   self:
     path: config

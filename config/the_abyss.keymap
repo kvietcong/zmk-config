@@ -21,7 +21,7 @@
         compatible = "zmk,keymap";
 
         base_layer {
-            label = "BAS";
+            display-name = "BAS";
             bindings = <
                 &kp Q &kp W  &kp E       &kp R     &kp T   /* */ &kp Y   &kp U    &kp I         &kp O   &kp P
                 &kp A &kp S  &kp D       &kp F     &kp G   /* */ &kp H   &kp J    &kp K         &kp L   &kp SEMI
@@ -31,7 +31,7 @@
         };
 
         game1_layer {
-            label = "GA1";
+            display-name = "GA1";
             bindings = <
                 &kp Q     &kp W     &kp E       &kp R  &kp T   /* */ &kp Y  &kp U  &kp I     &kp O     &kp P
                 &kp A     &kp S     &kp D       &kp F  &kp G   /* */ &kp H  &kp J  &kp K     &kp L     &kp SEMI
@@ -41,7 +41,7 @@
         };
 
         game2_layer {
-            label = "GA2";
+            display-name = "GA2";
             bindings = <
                 &kp LCTL &kp N1 &trans    &kp N2 &kp N0  /* */ &trans &trans &trans &trans &trans
                 &kp LSFT &trans &trans    &trans &kp N3  /* */ &trans &trans &trans &trans &trans
@@ -51,7 +51,7 @@
         };
 
         game3_layer {
-            label = "GA3";
+            display-name = "GA3";
             bindings = <
                 &trans  &trans       &trans   &trans      &trans  /* */ &trans  &kp PSCRN  &trans &trans &trans
                 &trans  &kp LS(F2)   &trans   &kp F2      &trans  /* */ &trans  &f1_       &f5_   &f9_   &trans
@@ -61,7 +61,7 @@
         };
 
         number_layer {
-            label = "NUM";
+            display-name = "NUM";
             bindings = <
                 &trans   &trans   &trans   &trans   &trans  /* */ &kp KP_PLUS &kp N7 &kp N8 &kp N9 &kp KP_MULTIPLY
                 &kp LWIN &sk LALT &sk LSFT &sk LCTL &trans  /* */ &kp EQUAL   &kp N4 &kp N5 &kp N6 &kp DOT
@@ -71,7 +71,7 @@
         };
 
         function_layer {
-            label = "FUN";
+            display-name = "FUN";
             bindings = <
                 &trans &trans &trans &trans &trans  /* */ &kp C_MUTE &kp PSCRN  &kp PAUSE_BREAK &kp KP_NUMLOCK &kp C_VOL_UP
                 &trans &trans &trans &trans &trans  /* */ &bt_sel    &f1_       &f5_            &f9_           &media
@@ -81,7 +81,7 @@
         };
 
         symbol_layer {
-            label = "SYM";
+            display-name = "SYM";
             bindings = <
                 &kp BACKSLASH &kp SQT   &kp LBKT &kp RBKT &trans    /* */ &trans  &trans   &trans   &trans   &trans
                 &kp GRAVE     &kp UNDER &kp LPAR &kp RPAR &kp TILDE /* */ &trans  &sk LCTL &sk RSFT &sk LALT &kp LWIN
@@ -91,7 +91,7 @@
         };
 
         navigation_layer {
-            label = "NAV";
+            display-name = "NAV";
             bindings = <
                 &kp INS &kp HOME &kp UP   &kp END   &trans    /* */ &trans   &trans   &trans &trans    &trans
                 &kp TAB &kp LEFT &kp DOWN &kp RIGHT &kp PG_UP /* */ &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans
@@ -153,7 +153,6 @@
     behaviors {
         bt_sel: tap_dance_bluetooth_select {
             compatible = "zmk,behavior-tap-dance";
-            label = "BLUETOOTH_SELECT";
             #binding-cells = <0>;
             tapping-term-ms = <256>;
             bindings = <&bt BT_SEL 0>, <&bt BT_SEL 1>, <&bt BT_SEL 2>;
@@ -161,7 +160,6 @@
 
         bt_clr: tap_dance_bluetooth_clear {
             compatible = "zmk,behavior-tap-dance";
-            label = "BLUETOOTH_CLEAR";
             #binding-cells = <0>;
             tapping-term-ms = <256>;
             bindings = <&trans>, <&bt BT_CLR>;
@@ -169,7 +167,6 @@
 
         tg_game: tg_game {
             compatible = "zmk,behavior-tap-dance";
-            label = "TOGGLE_GAME";
             #binding-cells = <0>;
             tapping-term-ms = <512>;
             bindings = <&to BAS>, <&to GA1>;
@@ -177,7 +174,6 @@
 
         n0_: tap_dance_n0_ {
             compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_N0_N9";
             #binding-cells = <0>;
             tapping-term-ms = <512>;
             bindings = <&kp N0>, <&kp N1>, <&kp N2>, <&kp N3>, <&kp N4>,
@@ -186,7 +182,6 @@
 
         f1_: tap_dance_f1_ {
             compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_F1_F24";
             #binding-cells = <0>;
             tapping-term-ms = <512>;
             bindings = <&kp F1>, <&kp F2>, <&kp F3>, <&kp F4>,
@@ -199,7 +194,6 @@
 
         f5_: tap_dance_f5_ {
             compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_F5_F24";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&kp F5>, <&kp F6>, <&kp F7>, <&kp F8>,
@@ -211,7 +205,6 @@
 
         f9_: tap_dance_f9_ {
             compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_F9_F24";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&kp F9>, <&kp F10>, <&kp F11>, <&kp F12>,
@@ -222,7 +215,6 @@
 
         media: tap_dance_media {
             compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_MEDIA";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&kp C_PP>, <&kp C_NEXT>, <&kp C_PREV>;
@@ -230,7 +222,6 @@
 
         output: tap_output {
             compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_OUTPUT";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings = <&out OUT_USB>, <&out OUT_BLE>;
@@ -241,14 +232,12 @@
         // No way to cancel sticky keys so using F24 as a NOOP proxy
         // Bailing out of any sticky keyboard state macro
         bail: macro_bail {
-            label = "MACRO_BAIL";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap &kp F24 &to BAS>;
         };
 
         noop: macro_noop {
-            label = "MACRO_NOOP";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap &kp F24>;
@@ -256,8 +245,8 @@
     };
 };
 
-&sl { release-after-ms = <800>; no-sticky-after-hold-ms = <400>; };
-&sk { release-after-ms = <800>; no-sticky-after-hold-ms = <400>; quick-release; };
+&sl { release-after-ms = <800>; };
+&sk { release-after-ms = <800>; quick-release; };
 &lt { flavor = "balanced"; tapping-term-ms = <222>; };
 &caps_word { continue-list = <UNDERSCORE MINUS BSPC>; };
 
@@ -266,4 +255,3 @@
 // &trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
 // &trans &trans &trans &trans &trans /* */ &trans &trans &trans &trans &trans
 //               &trans &trans &trans /* */ &trans &trans &trans
-
